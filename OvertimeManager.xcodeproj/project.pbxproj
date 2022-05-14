@@ -10,11 +10,14 @@
 		CBCFD965282F920400949226 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD964282F920400949226 /* Tests_iOS.swift */; };
 		CBCFD967282F920400949226 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD966282F920400949226 /* Tests_iOSLaunchTests.swift */; };
 		CBCFD974282F920400949226 /* OvertimeManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD94C282F91FF00949226 /* OvertimeManagerApp.swift */; };
-		CBCFD976282F920400949226 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD94D282F91FF00949226 /* ContentView.swift */; };
+		CBCFD976282F920400949226 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD94D282F91FF00949226 /* HomeView.swift */; };
 		CBCFD978282F920400949226 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCFD94E282F920300949226 /* Assets.xcassets */; };
 		CBCFD98B282F98CB00949226 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD98A282F98CB00949226 /* Employee.swift */; };
 		CBCFD98F282F994800949226 /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD98E282F994800949226 /* TimeEntry.swift */; };
 		CBCFD991282F9CF900949226 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD990282F9CF900949226 /* Service.swift */; };
+		CBCFD9932830420A00949226 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD9922830420A00949226 /* HomeViewModel.swift */; };
+		CBCFD998283044D200949226 /* Double+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD997283044D200949226 /* Double+toString.swift */; };
+		CBCFD99B283044F500949226 /* EmployeeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD99A283044F500949226 /* EmployeeFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +32,7 @@
 
 /* Begin PBXFileReference section */
 		CBCFD94C282F91FF00949226 /* OvertimeManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvertimeManagerApp.swift; sourceTree = "<group>"; };
-		CBCFD94D282F91FF00949226 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CBCFD94D282F91FF00949226 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CBCFD94E282F920300949226 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCFD953282F920300949226 /* OvertimeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OvertimeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCFD960282F920400949226 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +41,9 @@
 		CBCFD98A282F98CB00949226 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		CBCFD98E282F994800949226 /* TimeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
 		CBCFD990282F9CF900949226 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		CBCFD9922830420A00949226 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		CBCFD997283044D200949226 /* Double+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+toString.swift"; sourceTree = "<group>"; };
+		CBCFD99A283044F500949226 /* EmployeeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,9 +76,11 @@
 		CBCFD94B282F91FF00949226 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CBCFD999283044E600949226 /* Mocks */,
+				CBCFD996283044C500949226 /* Extensions */,
+				CBCFD994283044A400949226 /* Views */,
 				CBCFD989282F98A400949226 /* Models */,
 				CBCFD94C282F91FF00949226 /* OvertimeManagerApp.swift */,
-				CBCFD94D282F91FF00949226 /* ContentView.swift */,
 				CBCFD94E282F920300949226 /* Assets.xcassets */,
 			);
 			path = App;
@@ -104,6 +112,39 @@
 				CBCFD990282F9CF900949226 /* Service.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CBCFD994283044A400949226 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CBCFD995283044B000949226 /* Home */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CBCFD995283044B000949226 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CBCFD94D282F91FF00949226 /* HomeView.swift */,
+				CBCFD9922830420A00949226 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CBCFD996283044C500949226 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CBCFD997283044D200949226 /* Double+toString.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CBCFD999283044E600949226 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				CBCFD99A283044F500949226 /* EmployeeFactory.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,7 +246,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBCFD976282F920400949226 /* ContentView.swift in Sources */,
+				CBCFD99B283044F500949226 /* EmployeeFactory.swift in Sources */,
+				CBCFD976282F920400949226 /* HomeView.swift in Sources */,
+				CBCFD9932830420A00949226 /* HomeViewModel.swift in Sources */,
+				CBCFD998283044D200949226 /* Double+toString.swift in Sources */,
 				CBCFD98B282F98CB00949226 /* Employee.swift in Sources */,
 				CBCFD991282F9CF900949226 /* Service.swift in Sources */,
 				CBCFD974282F920400949226 /* OvertimeManagerApp.swift in Sources */,

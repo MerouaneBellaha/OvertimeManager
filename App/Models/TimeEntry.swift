@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct TimeEntry {
-    let uuid: UUID
+struct TimeEntry: Identifiable {
+    let id: UUID
     
     let date: Date
     let service: Service
@@ -17,7 +17,7 @@ struct TimeEntry {
 
 extension TimeEntry {
     init (date: Date, service: Service, overtime: Double) {
-        self.uuid = UUID()
+        self.id = UUID()
         
         self.date = date
         self.service = service

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Employee {
-    let uuid: UUID
+struct Employee: Identifiable {
+    let id: UUID
     var entries: [TimeEntry]
     
     let firstName: String
@@ -18,11 +18,15 @@ struct Employee {
 
 extension Employee {
     init(firstName: String, lastName: String, overtime: Double) {
-        uuid = UUID()
-        entries = []
+        self.id = UUID()
+        self.entries = []
         
         self.firstName = firstName
         self.lastName = lastName
         self.overtime = overtime
     }
+}
+
+extension Employee {
+    var displayableName: String { firstName + " " + lastName }
 }
