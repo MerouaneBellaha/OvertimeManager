@@ -9,6 +9,7 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     @Published var employees: [Employee] = []
+    @Published var showModal = false
     
     init() {
         employees = getEmployees()
@@ -18,8 +19,7 @@ class HomeViewModel: ObservableObject {
         EmployeeFactory.employees
     }
     
-    // TODO: - Could be more functionnal? -> return value
-    func addEmployee(_ employee: Employee) {
-        employees.append(employee)
+    func removeEmployee(at offsets: IndexSet) {
+        employees.remove(atOffsets: offsets)
     }
 }

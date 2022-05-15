@@ -12,18 +12,31 @@ struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
-        VStack {
-            Button("add new employee") {
-                viewModel.addEmployee(EmployeeFactory.employee)
-            }
-            .buttonStyle(.bordered)
-            List(viewModel.employees) { employee in
+        NavigationView {
+            VStack {
                 HStack {
-                    Text(employee.displayableName)
+                    Button("add new employee") {
+                        viewModel.showModal.toggle()
+                    }
                     Spacer()
-                    Text(employee.overtime.toString())
+                }
+                .padding()
+                .buttonStyle(.bordered)
+                .popover(isPresented: $viewModel.showModal) { NewEmployeeView(employees: $viewModel.employees)
+                }
+                
+                List {
+                    ForEach(viewModel.employees) { employee in
+                        HStack {
+                            Text(employee.displayableName)
+                            Spacer()
+                            Text(employee.overtime.toString())
+                        }
+                    }
+                    .onDelete(perform: viewModel.removeEmployee)
                 }
             }
+            .navigationTitle("Employees")
         }
     }
 }
