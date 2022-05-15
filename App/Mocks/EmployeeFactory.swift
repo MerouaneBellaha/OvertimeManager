@@ -9,8 +9,7 @@ import Foundation
 
 struct EmployeeFactory {
     static let employees = [
-        Employee(firstName: "Pascaline", lastName: "Janvrin", overtime: 2.5),
-        Employee(firstName: "Bellaha", lastName: "Merouane", overtime: -2.0)]
-    static let employee = Employee(firstName: "Jeanne", lastName: "Po", overtime: 0)
+        Employee(id: UUID(), entries: EntryFactory.entries, firstName: "Pascaline", lastName: "Janvrin", overtime: 2.5),
+        Employee(id: UUID(), entries: EntryFactory.entries, firstName: "Bellaha", lastName: "Merouane", overtime: -2.0)]
+    static let employee = Employee(id: UUID(), entries: EntryFactory.entries, firstName: "Jeanne", lastName: "Po", overtime: 0)
 }
-

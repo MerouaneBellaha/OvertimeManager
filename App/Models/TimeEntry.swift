@@ -24,3 +24,11 @@ extension TimeEntry {
         self.overtime = overtime
     }
 }
+
+extension TimeEntry {
+    var displayableDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter.string(from: date)
+    }
+}

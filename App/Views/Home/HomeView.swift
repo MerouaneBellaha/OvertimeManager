@@ -27,10 +27,16 @@ struct HomeView: View {
                 
                 List {
                     ForEach(viewModel.employees) { employee in
-                        HStack {
-                            Text(employee.displayableName)
-                            Spacer()
-                            Text(employee.overtime.toString())
+                        NavigationLink(
+                            destination: EmployeeView(viewModel:
+                                                        EmployeeViewModel(employee: employee)
+                                                     )
+                        ) {
+                            HStack {
+                                Text(employee.displayableName)
+                                Spacer()
+                                Text(employee.overtime.toString())
+                            }
                         }
                     }
                     .onDelete(perform: viewModel.removeEmployee)

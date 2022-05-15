@@ -9,4 +9,11 @@ import Foundation
 
 enum Service {
     case lunch, evening
+    
+    var description: String {
+        switch self {
+        case .lunch: return "midi"
+        case .evening: return "soir"
+        }
+    }
 }
