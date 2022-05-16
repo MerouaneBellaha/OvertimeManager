@@ -12,27 +12,24 @@ struct EmployeeView: View {
     @ObservedObject var viewModel: EmployeeViewModel
     
     var body: some View {
-        VStack {
-            Form {
-                Section {
-                    Text(viewModel.employee.displayableName)
+        NavigationView {
+            VStack {
+                HStack {
                     Text("overtime: " + viewModel.employee.overtime.toString())
+                    Spacer()
                 }
-                
-                Section {
-                    HStack {
-                        Button("add new entry") {
-                            viewModel.showModal.toggle()
-                        }
-                        Spacer()
+                .padding()
+                HStack {
+                    Button("add new entry") {
+                        viewModel.showModal.toggle()
                     }
-                    .padding()
-                    .buttonStyle(.bordered)
-                    .popover(isPresented: $viewModel.showModal) {
-                        Text("New Entry View")
-                    }
+                    Spacer()
                 }
-                
+                .padding()
+                .buttonStyle(.bordered)
+                .popover(isPresented: $viewModel.showModal) {
+                    NewEntryView()
+                }
                 List {
                     ForEach(viewModel.employee.entries) { entry in
                         HStack {
@@ -46,6 +43,7 @@ struct EmployeeView: View {
                     .onDelete(perform: viewModel.removeEntry)
                 }
             }
+            .navigationTitle(viewModel.employee.displayableName)
         }
     }
 }

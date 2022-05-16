@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Service {
+enum Service: CaseIterable {
     case lunch, evening
     
     var description: String {

@@ -13,11 +13,13 @@ struct TimeEntry: Identifiable {
     let date: Date
     let service: Service
     let overtime: Double
+    let author: String
 }
 
 extension TimeEntry {
     init (date: Date, service: Service, overtime: Double) {
         self.id = UUID()
+        self.author = "Pascaline"
         
         self.date = date
         self.service = service
