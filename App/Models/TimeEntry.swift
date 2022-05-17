@@ -14,15 +14,6 @@ struct TimeEntry: Identifiable {
     let service: Service
     let overtime: Double
     let author: String
-    
-//    init (id: UUID = UUID(), author: String = "Pas", date: Date, service: Service, overtime: Double) {
-//        self.id = id
-//        self.author = author
-//
-//        self.date = date
-//        self.service = service
-//        self.overtime = overtime
-//    }
 }
 
 extension TimeEntry {
