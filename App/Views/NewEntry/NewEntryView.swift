@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewEntryView: View {
 
-    @Binding var employee: Employee
+    @State var employee: Employee
     @ObservedObject var viewModel = NewEntryViewModel()
     @Environment(\.dismiss) var dismiss
 
@@ -54,8 +54,8 @@ struct NewEntryView: View {
                                 buttons: [
                                     .cancel(Text("Non")),
                                     .default(Text("Oui")) {
-                                        employee.entries.append(viewModel.createEntry())
-                                        employee.overtime += viewModel.overtime
+                                        let newEntry = viewModel.createEntry()
+                                        employee.addEntry(entry: newEntry)
                                         dismiss()
                                     }
                                 ])
@@ -71,11 +71,11 @@ struct NewEntryView: View {
     }
 }
 
-struct NewEntryView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewEntryView(employee: .constant(EmployeeFactory.employee))
-    }
-}
+//struct NewEntryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewEntryView(employee: .constant(EmployeeFactory.employee))
+//    }
+//}
 
 extension NewEntryView {
     var datePickerView: some View {

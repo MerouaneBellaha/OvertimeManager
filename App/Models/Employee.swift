@@ -7,7 +7,7 @@ class Employee: Identifiable, ObservableObject {
     
     let firstName: String
     let lastName: String
-    @Published var overtime: Double
+    var overtime: Double
     let creationDate = Date()
     
     init(id: UUID = UUID(), entries: [TimeEntry] = [], firstName: String, lastName: String, overtime: Double) {
@@ -22,6 +22,11 @@ class Employee: Identifiable, ObservableObject {
         guard let index = offsets.first else { return }
         overtime -= entries[index].overtime
         entries.remove(atOffsets: offsets)
+    }
+    
+    func addEntry(entry: TimeEntry) {
+        entries.append(entry)
+        overtime += entry.overtime
     }
 }
 

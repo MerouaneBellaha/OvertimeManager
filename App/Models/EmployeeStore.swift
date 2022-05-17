@@ -1,5 +1,5 @@
 //
-//  Employees.swift
+//  EmployeeStore.swift
 //  OvertimeManager (iOS)
 //
 //  Created by Merouane Bellaha on 17/05/2022.
@@ -10,8 +10,7 @@ import Combine
 
 class EmployeeStore: ObservableObject {
     @Published var employees: [Employee] = []
-//    @Published var currentEmployee: Employee? = nil
-
+    
         init() {
         self.employees = getEmployees()
     }
@@ -33,4 +32,3 @@ class EmployeeStore: ObservableObject {
         employees.insert(employee, at: employees.firstIndex(where: { $0.lastName > employee.lastName }) ?? 0)
     }
 }
-

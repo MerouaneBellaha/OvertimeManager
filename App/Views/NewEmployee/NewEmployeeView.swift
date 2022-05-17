@@ -65,8 +65,8 @@ struct NewEmployeeView: View {
     }
 }
 
-//struct NewEmployeeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NewEmployeeView(employees: .constant(EmployeeFactory.employees))
-//    }
-//}
+struct NewEmployeeView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewEmployeeView(employeeStore: EmployeeStore())
+    }
+}

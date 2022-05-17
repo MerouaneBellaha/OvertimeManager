@@ -29,8 +29,7 @@ struct EmployeeView: View {
                 .padding()
                 .buttonStyle(.bordered)
                 .popover(isPresented: $viewModel.showModal) {
-//                    NewEntryView(employee: $employee)
-                    Text("ok")
+                    NewEntryView(employee: employee)
                 }
                 List {
                     ForEach($employee.entries) { $entry in
