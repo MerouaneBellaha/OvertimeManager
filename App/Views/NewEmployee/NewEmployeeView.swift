@@ -42,7 +42,7 @@ struct NewEmployeeView: View {
                     .buttonStyle(.bordered)
                     .actionSheet(isPresented: $viewModel.showPopup) {
                         ActionSheet(title: Text("Confirmer"),
-                                    message:Text( viewModel.getPopupValidationMessage()),
+                                    message: Text( viewModel.getPopupValidationMessage()),
                                     buttons: [
                                         .cancel(Text("Non")),
                                         .default(Text("Oui")) {

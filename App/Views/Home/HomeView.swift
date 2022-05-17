@@ -52,3 +52,16 @@ struct HomeView_Previews: PreviewProvider {
         HomeView(viewModel: HomeViewModel())
     }
 }
+
+struct EmployeeRowView: View {
+    
+    
+    
+    var body: some View {
+        HStack {
+            Text(employee.displayableName)
+            Spacer()
+            Text(employee.overtime.toString())
+        }
+    }
+}

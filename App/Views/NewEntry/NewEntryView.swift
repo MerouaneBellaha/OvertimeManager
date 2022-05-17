@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct NewEntryView: View {
-    
-    @ObservedObject var viewModel = NewEntryViewModel()
+
+    @ObservedObject var viewModel: NewEntryViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -24,7 +24,7 @@ struct NewEntryView: View {
                         }
                     }
                 }
-                if viewModel.showDatePicker { datePicker }
+                if viewModel.showDatePicker { datePickerView }
                 
                 Picker("service", selection: $viewModel.service) {
                     ForEach(Service.allCases, id: \.self) {
@@ -41,63 +41,43 @@ struct NewEntryView: View {
                     )
                 }
             }
+            HStack {
+                Spacer()
+                Button("add") {
+                    viewModel.showPopup.toggle()
+                }
+                .buttonStyle(.bordered)
+                .actionSheet(isPresented: $viewModel.showPopup) {
+                    ActionSheet(title: Text("Confirmer"),
+                                message: Text( viewModel.getPopupValidationMessage()),
+                                buttons: [
+                                    .cancel(Text("Non")),
+                                    .default(Text("Oui")) {
+                                        viewModel.addEntry()
+
+                                        dismiss()
+                                    }
+                                ])
+                }
+                Spacer()
+                Button("dismiss") {
+                    dismiss()
+                }
+                .buttonStyle(.bordered)
+                Spacer()
+            }
         }
-        
-        //            Form {
-        //                Section {
-        //                    HStack {
-        //                        Text("Nom: ")
-        //                        TextField("nom", text: $viewModel.firstName)
-        //                    }
-        //                    HStack {
-        //                        Text("Prenom: ")
-        //                        TextField("prenom", text: $viewModel.lastName)
-        //                    }
-        //                    HStack {
-        //                        Text("Heures: " + viewModel.overtime.toString())
-        //                        Stepper("",
-        //                                onIncrement: { viewModel.overtime += 0.25 },
-        //                                onDecrement: { viewModel.overtime -= 0.25 }
-        //                        )
-        //                    }
-        //                }
-        //
-        //                HStack {
-        //                    Spacer()
-        //                    Button("add") {
-        //                        viewModel.showPopup.toggle()
-        //                    }
-        //                    .buttonStyle(.bordered)
-        //                    .actionSheet(isPresented: $viewModel.showPopup) {
-        //                        ActionSheet(title: Text("Confirmer"),
-        //                                    message:Text( viewModel.getPopupValidationMessage()),
-        //                                    buttons: [
-        //                                        .cancel(Text("Non")),
-        //                                        .default(Text("Oui")) {
-        //                                            employees.append(viewModel.createEmployee())
-        //                                            dismiss()
-        //                                        }
-        //                                    ])
-        //                    }
-        //                    Spacer()
-        //                    Button("dismiss") {
-        //                        dismiss()
-        //                    }
-        //                    .buttonStyle(.bordered)
-        //                    Spacer()
-        //                }
-        //            }
     }
 }
 
-struct NewEntryView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewEntryView()
-    }
-}
+//struct NewEntryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewEntryView(employee: .constant(EmployeeFactory.employee))
+//    }
+//}
 
 extension NewEntryView {
-    var datePicker: some View {
+    var datePickerView: some View {
         DatePicker("",
                    selection: $viewModel.selectedDate,
                    displayedComponents: [.date])

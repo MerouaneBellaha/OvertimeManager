@@ -14,13 +14,22 @@ struct Employee: Identifiable {
     let firstName: String
     let lastName: String
     var overtime: Double
+//
+//    init(id: UUID = UUID(), entries: [TimeEntry] = [], firstName: String, lastName: String, overtime: Double) {
+//        self.id = id
+//        self.entries = entries
+//
+//        self.firstName = firstName
+//        self.lastName = lastName
+//        self.overtime = overtime
+//    }
 }
 
 extension Employee {
     init(firstName: String, lastName: String, overtime: Double) {
         self.id = UUID()
         self.entries = []
-        
+
         self.firstName = firstName
         self.lastName = lastName
         self.overtime = overtime
