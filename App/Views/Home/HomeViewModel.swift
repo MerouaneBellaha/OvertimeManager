@@ -22,4 +22,8 @@ class HomeViewModel: ObservableObject {
     func removeEmployee(at offsets: IndexSet) {
         employees.remove(atOffsets: offsets)
     }
+    
+    func resetOvertimeToZeroForAllEmployees() {
+        employees.indices.forEach { employees[$0].overtime = 0 }
+    }
 }

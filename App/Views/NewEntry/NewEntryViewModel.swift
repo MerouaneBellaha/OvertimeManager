@@ -26,7 +26,7 @@ class NewEntryViewModel: ObservableObject {
     }
     
     func getPopupValidationMessage() -> String {
-        "Ajouter nouvelle entrée; date: \(selectedDate.toString), service: \(service.description) avec \(overtime.toString()) heures?"
+        "Add new entry; date: \(selectedDate.toString), service: \(service.description) with \(overtime.toString()) overtime?"
     }
     
     func createEntry() -> TimeEntry {

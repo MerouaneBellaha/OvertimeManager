@@ -19,6 +19,9 @@ struct HomeView: View {
                         viewModel.showModal.toggle()
                     }
                     Spacer()
+                    Button("reset") {
+                        viewModel.resetOvertimeToZeroForAllEmployees()
+                    }
                 }
                 .padding()
                 .buttonStyle(.bordered)

@@ -12,8 +12,8 @@ enum Service: CaseIterable {
     
     var description: String {
         switch self {
-        case .lunch: return "midi"
-        case .evening: return "soir"
+        case .lunch: return "lunch"
+        case .evening: return "evening"
         }
     }
 }

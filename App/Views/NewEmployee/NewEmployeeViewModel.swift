@@ -25,6 +25,6 @@ class NewEmployeeViewModel: ObservableObject {
     }
     
     func getPopupValidationMessage() -> String {
-        "Ajouter \(firstName) \(lastName) avec \(overtime.toString()) heures?"
+        "Add \(firstName) \(lastName) with \(overtime.toString()) overtime?"
     }
 }
