@@ -26,17 +26,11 @@ struct HomeView: View {
                 }
                 
                 List {
-                    ForEach(viewModel.employees) { employee in
+                    ForEach($viewModel.employees) { $employee in
                         NavigationLink(
-                            destination: EmployeeView(viewModel:
-                                                        EmployeeViewModel(employee: employee)
-                                                     )
+                            destination: EmployeeView(employee: $employee)
                         ) {
-                            HStack {
-                                Text(employee.displayableName)
-                                Spacer()
-                                Text(employee.overtime.toString())
-                            }
+                            EmployeeRowView(employee: employee)
                         }
                     }
                     .onDelete(perform: viewModel.removeEmployee)
@@ -55,7 +49,7 @@ struct HomeView_Previews: PreviewProvider {
 
 struct EmployeeRowView: View {
     
-    
+    var employee: Employee
     
     var body: some View {
         HStack {

@@ -8,7 +8,7 @@
 import Foundation
 
 class NewEntryViewModel: ObservableObject {
-    @Published var employee: Employee
+
     @Published var showDatePicker = false {
         didSet { updateShowDatePickerButtonLabel() }
     }
@@ -20,11 +20,7 @@ class NewEntryViewModel: ObservableObject {
     @Published var showPopup = false
     
     var showDatePickerButtonLabel = "show"
-    
-    init(employee: Employee) {
-        self.employee = employee
-    }
-    
+
     private func updateShowDatePickerButtonLabel() {
         showDatePickerButtonLabel = showDatePicker ? "hide" : "show"
     }
@@ -33,12 +29,7 @@ class NewEntryViewModel: ObservableObject {
         "Ajouter nouvelle entrée; date: \(selectedDate.toString), service: \(service.description) avec \(overtime.toString()) heures?"
     }
     
-    func addEntry() {
-        employee.entries.append(createEntry())
-        employee.overtime += overtime
-    }
-    
-    private func createEntry() -> TimeEntry {
+    func createEntry() -> TimeEntry {
         TimeEntry(date: selectedDate, service: service, overtime: overtime)
     }
 }

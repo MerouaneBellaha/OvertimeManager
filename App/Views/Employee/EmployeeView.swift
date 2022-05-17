@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct EmployeeView: View {
-    
-    @ObservedObject var viewModel: EmployeeViewModel
+
+    @Binding var employee: Employee
+    @ObservedObject var viewModel = EmployeeViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    Text("overtime: " + viewModel.employee.overtime.toString())
+                    Text("overtime: " + employee.overtime.toString())
                     Spacer()
                 }
                 .padding()
@@ -28,28 +29,41 @@ struct EmployeeView: View {
                 .padding()
                 .buttonStyle(.bordered)
                 .popover(isPresented: $viewModel.showModal) {
-                    NewEntryView(viewModel: NewEntryViewModel(employee: viewModel.employee))
+                    NewEntryView(employee: $employee)
                 }
                 List {
-                    ForEach(viewModel.employee.entries) { entry in
-                        HStack {
-                            Text(entry.displayableDate)
-                                .padding(.trailing)
-                            Text(entry.service.description)
-                            Spacer()
-                            Text(entry.overtime.toString())
-                        }
+                    ForEach(employee.entries) { entry in
+                        EntryRowView(entry: entry)
                     }
-                    .onDelete(perform: viewModel.removeEntry)
+                    .onDelete(perform: { offset in
+                        guard let index = offset.first else { return }
+                        employee.overtime -= employee.entries[index].overtime
+                        employee.entries.remove(atOffsets: offset)
+                    })
                 }
             }
-            .navigationTitle(viewModel.employee.displayableName)
+            .navigationTitle(employee.displayableName)
         }
     }
 }
 
 struct EmployeeView_Previews: PreviewProvider {
     static var previews: some View {
-        EmployeeView(viewModel: EmployeeViewModel(employee: EmployeeFactory.employee))
+        EmployeeView(employee: .constant(EmployeeFactory.employee))
+    }
+}
+
+struct EntryRowView: View {
+    
+    var entry: TimeEntry
+    
+    var body: some View {
+        HStack {
+            Text(entry.displayableDate)
+                .padding(.trailing)
+            Text(entry.service.description)
+            Spacer()
+            Text(entry.overtime.toString())
+        }
     }
 }

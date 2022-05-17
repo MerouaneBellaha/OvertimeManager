@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class NewEmployeeViewModel: ObservableObject {
     @Published var firstName: String = ""

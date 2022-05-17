@@ -14,7 +14,7 @@ struct Employee: Identifiable {
     let firstName: String
     let lastName: String
     var overtime: Double
-//
+
 //    init(id: UUID = UUID(), entries: [TimeEntry] = [], firstName: String, lastName: String, overtime: Double) {
 //        self.id = id
 //        self.entries = entries

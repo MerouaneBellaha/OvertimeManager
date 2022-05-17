@@ -11,6 +11,7 @@ struct NewEmployeeView: View {
     
     @Binding var employees: [Employee]
     @ObservedObject var viewModel = NewEmployeeViewModel()
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
