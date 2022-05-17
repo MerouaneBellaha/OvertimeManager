@@ -16,7 +16,7 @@ class HomeViewModel: ObservableObject {
     }
     
     private func getEmployees() -> [Employee] {
-        EmployeeFactory.employees
+        EmployeeFactory.employees.sortByLastName
     }
     
     func removeEmployee(at offsets: IndexSet) {

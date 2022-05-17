@@ -14,6 +14,7 @@ struct Employee: Identifiable {
     let firstName: String
     let lastName: String
     var overtime: Double
+    let creationDate = Date()
 }
 
 extension Employee {
@@ -28,5 +29,11 @@ extension Employee {
 }
 
 extension Employee {
-    var displayableName: String { firstName + " " + lastName }
+    var displayableName: String { lastName + " " + firstName }
+}
+
+extension Array where Element == Employee {
+    var sortByLastName: Self {
+        self.sorted(by: { $0.lastName < $1.lastName })
+    }
 }

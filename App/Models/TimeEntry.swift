@@ -14,12 +14,14 @@ struct TimeEntry: Identifiable {
     let service: Service
     let overtime: Double
     let author: String
+    let creationDate: Date
 }
 
 extension TimeEntry {
     init (date: Date, service: Service, overtime: Double) {
         self.id = UUID()
         self.author = "Pascaline"
+        self.creationDate = Date.now
 
         self.date = date
         self.service = service
@@ -32,5 +34,11 @@ extension TimeEntry {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         return dateFormatter.string(from: date)
+    }
+}
+
+extension Array where Element == TimeEntry {
+    var sortByCreationDate: Self {
+        self.sorted(by: { $0.creationDate > $1.creationDate })
     }
 }

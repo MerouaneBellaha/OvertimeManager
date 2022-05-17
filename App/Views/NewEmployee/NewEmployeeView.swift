@@ -19,15 +19,15 @@ struct NewEmployeeView: View {
             Form {
                 Section {
                     HStack {
-                        Text("Nom: ")
-                        TextField("nom", text: $viewModel.firstName)
+                        Text("Lastname: ")
+                        TextField("lastname", text: $viewModel.lastName)
                     }
                     HStack {
-                        Text("Prenom: ")
-                        TextField("prenom", text: $viewModel.lastName)
+                        Text("Firstname: ")
+                        TextField("firstname", text: $viewModel.firstName)
                     }
                     HStack {
-                        Text("Heures: " + viewModel.overtime.toString())
+                        Text("Overtime: " + viewModel.overtime.toString())
                         Stepper("",
                                 onIncrement: { viewModel.overtime += 0.25 },
                                 onDecrement: { viewModel.overtime -= 0.25 }
@@ -42,12 +42,13 @@ struct NewEmployeeView: View {
                     }
                     .buttonStyle(.bordered)
                     .actionSheet(isPresented: $viewModel.showPopup) {
-                        ActionSheet(title: Text("Confirmer"),
+                        ActionSheet(title: Text("Confirm"),
                                     message: Text( viewModel.getPopupValidationMessage()),
                                     buttons: [
-                                        .cancel(Text("Non")),
-                                        .default(Text("Oui")) {
-                                            employees.append(viewModel.createEmployee())
+                                        .cancel(Text("No")),
+                                        .default(Text("Yes")) {
+                                            let newEmployee = viewModel.createEmployee()
+                                            employees.insert(newEmployee, at: employees.firstIndex(where: { $0.lastName > newEmployee.lastName }) ?? 0)
                                             dismiss()
                                         }
                                     ])

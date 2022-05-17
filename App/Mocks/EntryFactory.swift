@@ -9,8 +9,8 @@ import Foundation
 
 struct EntryFactory {
     static let entries = [
-        TimeEntry(date: Date.now, service: .evening, overtime: 5),
-        TimeEntry(date: Date.now, service: .lunch, overtime: -2.25)
+        TimeEntry(id: UUID(), date: Date.now, service: .evening, overtime: 5, author: "ok", creationDate: Date.now - 40000),
+        TimeEntry(date: Date.now - 250000, service: .lunch, overtime: -2.25)
             ]
     static let entry = TimeEntry(date: Date.now, service: .evening, overtime: 5)
 }

@@ -32,7 +32,7 @@ struct EmployeeView: View {
                     NewEntryView(employee: $employee)
                 }
                 List {
-                    ForEach(employee.entries) { entry in
+                    ForEach(employee.entries.sortByCreationDate) { entry in
                         EntryRowView(entry: entry)
                     }
                     .onDelete(perform: { offset in
