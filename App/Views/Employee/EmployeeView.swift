@@ -35,11 +35,7 @@ struct EmployeeView: View {
                     ForEach(employee.entries) { entry in
                         EntryRowView(entry: entry)
                     }
-                    .onDelete(perform: { offset in
-                        guard let index = offset.first else { return }
-                        employee.overtime -= employee.entries[index].overtime
-                        employee.entries.remove(atOffsets: offset)
-                    })
+                    .onDelete(perform: { viewModel.deleteEntry(at: $0, from: &employee) })
                 }
             }
             .navigationTitle(employee.displayableName)

@@ -32,6 +32,11 @@ class NewEntryViewModel: ObservableObject {
     func createEntry() -> TimeEntry {
         TimeEntry(date: selectedDate, service: service, overtime: overtime)
     }
+    
+    func addEntry(to employee: inout Employee) {
+        employee.entries.append(createEntry())
+        employee.overtime += overtime
+    }
 }
 
 extension Date {

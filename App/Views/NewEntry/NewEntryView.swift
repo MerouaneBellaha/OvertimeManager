@@ -54,8 +54,9 @@ struct NewEntryView: View {
                                 buttons: [
                                     .cancel(Text("Non")),
                                     .default(Text("Oui")) {
-                                        employee.entries.append(viewModel.createEntry())
-                                        employee.overtime += viewModel.overtime
+                                        viewModel.addEntry(to: &employee)
+//                                        employee.entries.append(viewModel.createEntry())
+//                                        employee.overtime += viewModel.overtime
                                         dismiss()
                                     }
                                 ])
