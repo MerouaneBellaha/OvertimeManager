@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct NewEmployeeView: View {
-    
-    @Binding var employees: [Employee]
+
     @ObservedObject var viewModel = NewEmployeeViewModel()
+    @State var employeeStore: EmployeeStore
     
     @Environment(\.dismiss) var dismiss
     
@@ -48,7 +48,7 @@ struct NewEmployeeView: View {
                                         .cancel(Text("No")),
                                         .default(Text("Yes")) {
                                             let newEmployee = viewModel.createEmployee()
-                                            employees.insert(newEmployee, at: employees.firstIndex(where: { $0.lastName > newEmployee.lastName }) ?? 0)
+                                            employeeStore.employees.insert(newEmployee, at: employeeStore.employees.firstIndex(where: { $0.lastName > newEmployee.lastName }) ?? 0)
                                             dismiss()
                                         }
                                     ])
@@ -65,8 +65,8 @@ struct NewEmployeeView: View {
     }
 }
 
-struct NewEmployeeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewEmployeeView(employees: .constant(EmployeeFactory.employees))
-    }
-}
+//struct NewEmployeeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewEmployeeView(employees: .constant(EmployeeFactory.employees))
+//    }
+//}

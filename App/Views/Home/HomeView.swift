@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var viewModel: HomeViewModel
+    @StateObject var employeeStore: EmployeeStore = EmployeeStore()
     
     var body: some View {
         NavigationView {
@@ -20,23 +21,24 @@ struct HomeView: View {
                     }
                     Spacer()
                     Button("reset") {
-                        viewModel.resetOvertimeToZeroForAllEmployees()
+                        employeeStore.resetOvertimeToZeroForAllEmployees()
                     }
                 }
                 .padding()
                 .buttonStyle(.bordered)
-                .popover(isPresented: $viewModel.showModal) { NewEmployeeView(employees: $viewModel.employees)
+                .popover(isPresented: $viewModel.showModal) { NewEmployeeView(employeeStore: employeeStore)
                 }
                 
                 List {
-                    ForEach($viewModel.employees) { $employee in
+                    ForEach($employeeStore.employees) { $employee in
                         NavigationLink(
-                            destination: EmployeeView(employee: $employee)
+//                            destination: EmployeeView(employee: $employee)
+                            destination: Text("ok")
                         ) {
-                            EmployeeRowView(employee: employee)
+                            EmployeeRowView(employee: $employee)
                         }
                     }
-                    .onDelete(perform: viewModel.removeEmployee)
+                    .onDelete(perform: employeeStore.removeEmployee)
                 }
             }
             .navigationTitle("Employees")
@@ -52,7 +54,7 @@ struct HomeView_Previews: PreviewProvider {
 
 struct EmployeeRowView: View {
     
-    var employee: Employee
+    @Binding var employee: Employee
     
     var body: some View {
         HStack {

@@ -12,6 +12,7 @@
 		CB54A6D42830E4360096A9F3 /* EmployeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54A6D32830E4360096A9F3 /* EmployeeViewModel.swift */; };
 		CB54A6D82830E45A0096A9F3 /* EmployeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54A6D72830E45A0096A9F3 /* EmployeeView.swift */; };
 		CB54A6DA2830E8E70096A9F3 /* EntryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54A6D92830E8E70096A9F3 /* EntryFactory.swift */; };
+		CB5A66D82833F92B00B0E905 /* Employees.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5A66D72833F92B00B0E905 /* Employees.swift */; };
 		CB696BE528325E6A001987C5 /* NewEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB696BE428325E6A001987C5 /* NewEntryViewModel.swift */; };
 		CB696BE728325E8B001987C5 /* NewEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB696BE628325E8B001987C5 /* NewEntryView.swift */; };
 		CBCFD965282F920400949226 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD964282F920400949226 /* Tests_iOS.swift */; };
@@ -43,6 +44,7 @@
 		CB54A6D32830E4360096A9F3 /* EmployeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeViewModel.swift; sourceTree = "<group>"; };
 		CB54A6D72830E45A0096A9F3 /* EmployeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeView.swift; sourceTree = "<group>"; };
 		CB54A6D92830E8E70096A9F3 /* EntryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFactory.swift; sourceTree = "<group>"; };
+		CB5A66D72833F92B00B0E905 /* Employees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employees.swift; sourceTree = "<group>"; };
 		CB696BE428325E6A001987C5 /* NewEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewModel.swift; sourceTree = "<group>"; };
 		CB696BE628325E8B001987C5 /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
 		CBCFD94C282F91FF00949226 /* OvertimeManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvertimeManagerApp.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				CBCFD98A282F98CB00949226 /* Employee.swift */,
 				CBCFD98E282F994800949226 /* TimeEntry.swift */,
 				CBCFD990282F9CF900949226 /* Service.swift */,
+				CB5A66D72833F92B00B0E905 /* Employees.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				CBCFD974282F920400949226 /* OvertimeManagerApp.swift in Sources */,
 				CB696BE528325E6A001987C5 /* NewEntryViewModel.swift in Sources */,
 				CB54A6D42830E4360096A9F3 /* EmployeeViewModel.swift in Sources */,
+				CB5A66D82833F92B00B0E905 /* Employees.swift in Sources */,
 				CBCFD98F282F994800949226 /* TimeEntry.swift in Sources */,
 				CB0CB08E283047CA00E86650 /* NewEmployeeViewModel.swift in Sources */,
 			);

@@ -1,13 +1,7 @@
-//
-//  Employee.swift
-//  OvertimeManager (iOS)
-//
-//  Created by Merouane Bellaha on 14/05/2022.
-//
 
 import Foundation
 
-struct Employee: Identifiable {
+class Employee: Identifiable, ObservableObject {
     let id: UUID
     var entries: [TimeEntry]
     
@@ -15,13 +9,10 @@ struct Employee: Identifiable {
     let lastName: String
     var overtime: Double
     let creationDate = Date()
-}
-
-extension Employee {
-    init(firstName: String, lastName: String, overtime: Double) {
-        self.id = UUID()
-        self.entries = []
-
+    
+    init(id: UUID = UUID(), entries: [TimeEntry] = [], firstName: String, lastName: String, overtime: Double) {
+        self.id = id
+        self.entries = entries
         self.firstName = firstName
         self.lastName = lastName
         self.overtime = overtime
