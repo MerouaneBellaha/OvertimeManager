@@ -9,8 +9,8 @@ import SwiftUI
 
 struct EmployeeView: View {
 
-    @Binding var employee: Employee
     @ObservedObject var viewModel = EmployeeViewModel()
+    @StateObject var employee: Employee
     
     var body: some View {
         NavigationView {
@@ -29,33 +29,33 @@ struct EmployeeView: View {
                 .padding()
                 .buttonStyle(.bordered)
                 .popover(isPresented: $viewModel.showModal) {
-                    NewEntryView(employee: $employee)
+//                    NewEntryView(employee: $employee)
+                    Text("ok")
                 }
                 List {
-                    ForEach(employee.entries.sortByCreationDate) { entry in
-                        EntryRowView(entry: entry)
+                    ForEach($employee.entries) { $entry in
+                        EntryRowView(entry: $entry)
                     }
-                    .onDelete(perform: { offset in
-                        guard let index = offset.first else { return }
-                        employee.overtime -= employee.entries[index].overtime
-                        employee.entries.remove(atOffsets: offset)
-                    })
+                    .onDelete(perform: { offsets in
+                        employee.deleteEntry(atOffsets: offsets)
+                    }
+                    )
                 }
             }
             .navigationTitle(employee.displayableName)
         }
     }
 }
-
-struct EmployeeView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmployeeView(employee: .constant(EmployeeFactory.employee))
-    }
-}
+//
+//struct EmployeeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EmployeeView(employee: .constant(EmployeeFactory.employee))
+//    }
+//}
 
 struct EntryRowView: View {
     
-    var entry: TimeEntry
+    @Binding var entry: TimeEntry
     
     var body: some View {
         HStack {

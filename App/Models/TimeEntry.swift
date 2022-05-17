@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TimeEntry: Identifiable {
+class TimeEntry: Identifiable, ObservableObject {
     let id: UUID
     
     let date: Date
@@ -15,19 +15,29 @@ struct TimeEntry: Identifiable {
     let overtime: Double
     let author: String
     let creationDate: Date
-}
-
-extension TimeEntry {
-    init (date: Date, service: Service, overtime: Double) {
-        self.id = UUID()
-        self.author = "Pascaline"
-        self.creationDate = Date.now
-
+    
+    init (id: UUID = UUID(), date: Date, service: Service, overtime: Double, author: String = "pas", creationDate: Date = Date.now) {
+        self.id = id
         self.date = date
         self.service = service
         self.overtime = overtime
+        self.author = author
+        self.creationDate = creationDate
     }
+
 }
+//
+//extension TimeEntry {
+//    init (date: Date, service: Service, overtime: Double) {
+//        self.id = UUID()
+//        self.author = "Pascaline"
+//        self.creationDate = Date.now
+//
+//        self.date = date
+//        self.service = service
+//        self.overtime = overtime
+//    }
+//}
 
 extension TimeEntry {
     var displayableDate: String {

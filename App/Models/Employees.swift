@@ -10,6 +10,7 @@ import Combine
 
 class EmployeeStore: ObservableObject {
     @Published var employees: [Employee] = []
+//    @Published var currentEmployee: Employee? = nil
 
         init() {
         self.employees = getEmployees()
@@ -27,4 +28,9 @@ class EmployeeStore: ObservableObject {
     private func getEmployees() -> [Employee] {
         EmployeeFactory.employees.sortByLastName
     }
+
+     func insert(_ employee: Employee) {
+        employees.insert(employee, at: employees.firstIndex(where: { $0.lastName > employee.lastName }) ?? 0)
+    }
 }
+

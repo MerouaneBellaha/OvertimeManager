@@ -32,10 +32,14 @@ struct HomeView: View {
                 List {
                     ForEach($employeeStore.employees) { $employee in
                         NavigationLink(
-//                            destination: EmployeeView(employee: $employee)
-                            destination: Text("ok")
+                            destination: EmployeeView(employee: employee)
                         ) {
                             EmployeeRowView(employee: $employee)
+                        }
+                        .onAppear {
+                            employeeStore.objectWillChange.send()
+                            print(employee.overtime)
+                            
                         }
                     }
                     .onDelete(perform: employeeStore.removeEmployee)

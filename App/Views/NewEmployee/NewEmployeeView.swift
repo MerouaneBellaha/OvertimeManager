@@ -48,7 +48,7 @@ struct NewEmployeeView: View {
                                         .cancel(Text("No")),
                                         .default(Text("Yes")) {
                                             let newEmployee = viewModel.createEmployee()
-                                            employeeStore.employees.insert(newEmployee, at: employeeStore.employees.firstIndex(where: { $0.lastName > newEmployee.lastName }) ?? 0)
+                                            employeeStore.insert(newEmployee)
                                             dismiss()
                                         }
                                     ])
