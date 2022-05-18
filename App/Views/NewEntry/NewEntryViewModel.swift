@@ -20,10 +20,12 @@ class NewEntryViewModel: ObservableObject {
     var showDatePickerButtonLabel = "show"
     
     private let employee: Employee
-    private let employeeService: EmployeeService = EmployeeService()
+    private let updateEmployee: (Employee) -> ()
+//    private let employeeService: EmployeeService = EmployeeService()
     
-    init(employee: Employee) {
+    init(employee: Employee, updateEmployee: @escaping (Employee) -> ()) {
         self.employee = employee
+        self.updateEmployee = updateEmployee
     }
     
     func getPopupValidationMessage() -> String {
@@ -33,7 +35,8 @@ class NewEntryViewModel: ObservableObject {
     func addEntry() {
         let newEntry = createEntry()
         employee.addEntry(entry: newEntry)
-        employeeService.updateEmployee(employee: employee)
+        updateEmployee(employee)
+//        employeeService.updateEmployee(employee: employee)
     }
     
     private func createEntry() -> TimeEntry {

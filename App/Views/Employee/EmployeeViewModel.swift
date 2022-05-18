@@ -23,4 +23,8 @@ class EmployeeViewModel: ObservableObject {
         employee.deleteEntry(atOffsets: offSets)
         employeeService.updateEmployee(employee: employee)
     }
+    
+    func updateEmployee(employee: Employee) {
+        employeeService.updateEmployee(employee: employee)
+    }
 }

@@ -46,12 +46,12 @@ struct NewEntryView: View {
         }
     }
 }
-
-struct NewEntryView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewEntryView(viewModel: NewEntryViewModel(employee: EmployeeFactory.employee))
-    }
-}
+//
+//struct NewEntryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewEntryView(viewModel: NewEntryViewModel(employee: EmployeeFactory.employee))
+//    }
+//}
 
 extension NewEntryView {
     var datePickerView: some View {

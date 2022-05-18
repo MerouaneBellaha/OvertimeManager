@@ -11,8 +11,6 @@ struct EmployeeView: View {
     
     @ObservedObject var viewModel: EmployeeViewModel
     
-    var employeeService: EmployeeService = EmployeeService()
-    
     var body: some View {
         VStack {
             HStack {
@@ -23,7 +21,10 @@ struct EmployeeView: View {
                 }
                 .buttonStyle(.bordered)
                 .popover(isPresented: $viewModel.showModal) {
-                    NewEntryView(viewModel: NewEntryViewModel(employee: viewModel.employee))
+                    NewEntryView(viewModel:
+                                    NewEntryViewModel(employee: viewModel.employee,
+                                                      updateEmployee: viewModel.updateEmployee(employee:))
+                    )
                 }
             }
             .padding()
