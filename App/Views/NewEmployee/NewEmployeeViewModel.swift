@@ -16,11 +16,13 @@ class NewEmployeeViewModel: ObservableObject {
     
     func createEmployee() -> Employee {
         if !firstName.isEmpty, !lastName.isEmpty {
-            return Employee(firstName: firstName, lastName: lastName, overtime: overtime)
+            let newEntry = TimeEntry(date: .now, service: .lunch, overtime: overtime)
+            return Employee(entries: [newEntry], firstName: firstName, lastName: lastName, overtime: overtime)
         } else {
             // TODO: - Error handling
             print("Should not create empty Employee")
-            return Employee(firstName: firstName, lastName: lastName, overtime: overtime)
+            let newEntry = TimeEntry(date: .now, service: .lunch, overtime: overtime)
+            return Employee(entries: [newEntry], firstName: firstName, lastName: lastName, overtime: overtime)
         }
     }
     

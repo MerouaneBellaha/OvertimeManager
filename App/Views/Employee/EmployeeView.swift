@@ -8,40 +8,33 @@
 import SwiftUI
 
 struct EmployeeView: View {
-
+    
     @ObservedObject var viewModel = EmployeeViewModel()
     @StateObject var employee: Employee
     
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    Text("overtime: " + employee.overtime.toString())
-                    Spacer()
+        VStack {
+            HStack {
+                Text("overtime: " + employee.overtime.toString())
+                Spacer()
+                Button("add new entry") {
+                    viewModel.showModal.toggle()
                 }
-                .padding()
-                HStack {
-                    Button("add new entry") {
-                        viewModel.showModal.toggle()
-                    }
-                    Spacer()
-                }
-                .padding()
                 .buttonStyle(.bordered)
                 .popover(isPresented: $viewModel.showModal) {
                     NewEntryView(employee: employee)
                 }
-                List {
-                    ForEach($employee.entries) { $entry in
-                        EntryRowView(entry: $entry)
-                    }
-                    .onDelete(perform: { offsets in
-                        employee.deleteEntry(atOffsets: offsets)
-                    }
-                    )
-                }
             }
-            .navigationTitle(employee.displayableName)
+            .padding()
+            
+            List {
+                ForEach($employee.entries) { $entry in
+                    EntryRowView(entry: $entry)
+                }
+                .onDelete(perform: { offsets in
+                    employee.deleteEntry(atOffsets: offsets)
+                })
+            }
         }
     }
 }

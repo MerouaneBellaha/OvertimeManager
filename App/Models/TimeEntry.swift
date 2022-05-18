@@ -24,20 +24,7 @@ class TimeEntry: Identifiable, ObservableObject {
         self.author = author
         self.creationDate = creationDate
     }
-
 }
-//
-//extension TimeEntry {
-//    init (date: Date, service: Service, overtime: Double) {
-//        self.id = UUID()
-//        self.author = "Pascaline"
-//        self.creationDate = Date.now
-//
-//        self.date = date
-//        self.service = service
-//        self.overtime = overtime
-//    }
-//}
 
 extension TimeEntry {
     var displayableDate: String {

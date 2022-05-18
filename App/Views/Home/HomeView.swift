@@ -15,17 +15,11 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    Button("add new employee") {
-                        viewModel.showModal.toggle()
-                    }
-                    Spacer()
-                    Button("reset") {
-                        employeeStore.resetOvertimeToZeroForAllEmployees()
-                    }
-                }
+                HStackTwoButtonsView(
+                    left: .init(title: "add new employee") { viewModel.showModal.toggle() },
+                    right: .init(title: "reset", action:  employeeStore.resetOvertimeToZeroForAllEmployees)
+                )
                 .padding()
-                .buttonStyle(.bordered)
                 .popover(isPresented: $viewModel.showModal) { NewEmployeeView(employeeStore: employeeStore)
                 }
                 
@@ -33,6 +27,7 @@ struct HomeView: View {
                     ForEach($employeeStore.employees) { $employee in
                         NavigationLink(
                             destination: EmployeeView(employee: employee)
+                                .navigationTitle(employee.displayableName)
                         ) {
                             EmployeeRowView(employee: $employee)
                         }

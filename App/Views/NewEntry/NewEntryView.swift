@@ -33,14 +33,17 @@ struct NewEntryView: View {
             }
             
             Section(content: {}, footer: {
-                FormButtonsView(onAdd: { viewModel.showPopup.toggle() }, onDismiss: { dismiss() })
-                    .confirmationSheet(isPresented: $viewModel.showPopup,
-                                       message: viewModel.getPopupValidationMessage(),
-                                       action: {
-                        let newEntry = viewModel.createEntry()
-                        employee.addEntry(entry: newEntry)
-                        dismiss()
-                    })
+                HStackTwoButtonsView(
+                    left: .init(title: "dismiss", action: { dismiss() }),
+                    right: .init(title: "add", action: { viewModel.showPopup.toggle() })
+                )
+                .confirmationSheet(isPresented: $viewModel.showPopup,
+                                   message: viewModel.getPopupValidationMessage(),
+                                   action: {
+                    let newEntry = viewModel.createEntry()
+                    employee.addEntry(entry: newEntry)
+                    dismiss()
+                })
             })
         }
     }

@@ -23,12 +23,12 @@ class EmployeeStore: ObservableObject {
     func removeEmployee(at offsets: IndexSet) {
         employees.remove(atOffsets: offsets)
     }
-    
-    private func getEmployees() -> [Employee] {
-        EmployeeFactory.employees.sortByLastName
-    }
 
      func insert(_ employee: Employee) {
         employees.insert(employee, at: employees.firstIndex(where: { $0.lastName > employee.lastName }) ?? 0)
+    }
+    
+    private func getEmployees() -> [Employee] {
+        EmployeeFactory.employees.sortByLastName
     }
 }

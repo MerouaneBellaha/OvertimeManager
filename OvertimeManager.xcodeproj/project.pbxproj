@@ -29,7 +29,7 @@
 		CBDE052A2834C03700F0D512 /* Date+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05292834C03700F0D512 /* Date+toString.swift */; };
 		CBDE052D2834C98000F0D512 /* ConfirmationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE052C2834C98000F0D512 /* ConfirmationSheet.swift */; };
 		CBDE05302834CDC300F0D512 /* FormRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE052F2834CDC300F0D512 /* FormRowView.swift */; };
-		CBDE05322834D40100F0D512 /* FormButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05312834D40100F0D512 /* FormButtonsView.swift */; };
+		CBDE05322834D40100F0D512 /* HStackTwoButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05312834D40100F0D512 /* HStackTwoButtonsView.swift */; };
 		CBDE05342834D5EA00F0D512 /* OvertimeStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +68,7 @@
 		CBDE05292834C03700F0D512 /* Date+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+toString.swift"; sourceTree = "<group>"; };
 		CBDE052C2834C98000F0D512 /* ConfirmationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationSheet.swift; sourceTree = "<group>"; };
 		CBDE052F2834CDC300F0D512 /* FormRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowView.swift; sourceTree = "<group>"; };
-		CBDE05312834D40100F0D512 /* FormButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonsView.swift; sourceTree = "<group>"; };
+		CBDE05312834D40100F0D512 /* HStackTwoButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackTwoButtonsView.swift; sourceTree = "<group>"; };
 		CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvertimeStepperView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				CBDE052F2834CDC300F0D512 /* FormRowView.swift */,
-				CBDE05312834D40100F0D512 /* FormButtonsView.swift */,
+				CBDE05312834D40100F0D512 /* HStackTwoButtonsView.swift */,
 				CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */,
 			);
 			path = Components;
@@ -331,7 +331,7 @@
 				CBCFD9932830420A00949226 /* HomeViewModel.swift in Sources */,
 				CB0CB08C283047BE00E86650 /* NewEmployeeView.swift in Sources */,
 				CB54A6D82830E45A0096A9F3 /* EmployeeView.swift in Sources */,
-				CBDE05322834D40100F0D512 /* FormButtonsView.swift in Sources */,
+				CBDE05322834D40100F0D512 /* HStackTwoButtonsView.swift in Sources */,
 				CBCFD998283044D200949226 /* Double+toString.swift in Sources */,
 				CBCFD98B282F98CB00949226 /* Employee.swift in Sources */,
 				CBDE05302834CDC300F0D512 /* FormRowView.swift in Sources */,
