@@ -26,6 +26,10 @@
 		CBCFD9932830420A00949226 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD9922830420A00949226 /* HomeViewModel.swift */; };
 		CBCFD998283044D200949226 /* Double+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD997283044D200949226 /* Double+toString.swift */; };
 		CBCFD99B283044F500949226 /* EmployeeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFD99A283044F500949226 /* EmployeeFactory.swift */; };
+		CBDE052A2834C03700F0D512 /* Date+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05292834C03700F0D512 /* Date+toString.swift */; };
+		CBDE052D2834C98000F0D512 /* ConfirmationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE052C2834C98000F0D512 /* ConfirmationSheet.swift */; };
+		CBDE05302834CDC300F0D512 /* FormRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE052F2834CDC300F0D512 /* FormRowView.swift */; };
+		CBDE05322834D40100F0D512 /* FormButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05312834D40100F0D512 /* FormButtonsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,10 @@
 		CBCFD9922830420A00949226 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CBCFD997283044D200949226 /* Double+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+toString.swift"; sourceTree = "<group>"; };
 		CBCFD99A283044F500949226 /* EmployeeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeFactory.swift; sourceTree = "<group>"; };
+		CBDE05292834C03700F0D512 /* Date+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+toString.swift"; sourceTree = "<group>"; };
+		CBDE052C2834C98000F0D512 /* ConfirmationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationSheet.swift; sourceTree = "<group>"; };
+		CBDE052F2834CDC300F0D512 /* FormRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowView.swift; sourceTree = "<group>"; };
+		CBDE05312834D40100F0D512 /* FormButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +169,8 @@
 		CBCFD994283044A400949226 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CBDE052E2834CDB800F0D512 /* Components */,
+				CBDE052B2834C97300F0D512 /* ViewModifiers */,
 				CB696BE328325E56001987C5 /* NewEntry */,
 				CB54A6D22830E4260096A9F3 /* Employee */,
 				CB0CB08A283047A700E86650 /* NewEmployee */,
@@ -182,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				CBCFD997283044D200949226 /* Double+toString.swift */,
+				CBDE05292834C03700F0D512 /* Date+toString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -193,6 +204,23 @@
 				CB54A6D92830E8E70096A9F3 /* EntryFactory.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		CBDE052B2834C97300F0D512 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				CBDE052C2834C98000F0D512 /* ConfirmationSheet.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		CBDE052E2834CDB800F0D512 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CBDE052F2834CDC300F0D512 /* FormRowView.swift */,
+				CBDE05312834D40100F0D512 /* FormButtonsView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,17 +322,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBDE052A2834C03700F0D512 /* Date+toString.swift in Sources */,
 				CBCFD99B283044F500949226 /* EmployeeFactory.swift in Sources */,
 				CBCFD976282F920400949226 /* HomeView.swift in Sources */,
 				CBCFD9932830420A00949226 /* HomeViewModel.swift in Sources */,
 				CB0CB08C283047BE00E86650 /* NewEmployeeView.swift in Sources */,
 				CB54A6D82830E45A0096A9F3 /* EmployeeView.swift in Sources */,
+				CBDE05322834D40100F0D512 /* FormButtonsView.swift in Sources */,
 				CBCFD998283044D200949226 /* Double+toString.swift in Sources */,
 				CBCFD98B282F98CB00949226 /* Employee.swift in Sources */,
+				CBDE05302834CDC300F0D512 /* FormRowView.swift in Sources */,
 				CB54A6DA2830E8E70096A9F3 /* EntryFactory.swift in Sources */,
 				CBCFD991282F9CF900949226 /* Service.swift in Sources */,
 				CB696BE728325E8B001987C5 /* NewEntryView.swift in Sources */,
 				CBCFD974282F920400949226 /* OvertimeManagerApp.swift in Sources */,
+				CBDE052D2834C98000F0D512 /* ConfirmationSheet.swift in Sources */,
 				CB696BE528325E6A001987C5 /* NewEntryViewModel.swift in Sources */,
 				CB54A6D42830E4360096A9F3 /* EmployeeViewModel.swift in Sources */,
 				CB5A66D82833F92B00B0E905 /* EmployeeStore.swift in Sources */,

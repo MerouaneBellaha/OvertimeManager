@@ -13,12 +13,10 @@ class NewEntryViewModel: ObservableObject {
         didSet { updateShowDatePickerButtonLabel() }
     }
     @Published var selectedDate = Date()
-    
     @Published var service: Service = .lunch
     @Published var overtime: Double = 0.0
     
     @Published var showPopup = false
-    
     var showDatePickerButtonLabel = "show"
 
     private func updateShowDatePickerButtonLabel() {
@@ -31,16 +29,5 @@ class NewEntryViewModel: ObservableObject {
     
     func createEntry() -> TimeEntry {
         TimeEntry(date: selectedDate, service: service, overtime: overtime)
-    }
-}
-
-extension Date {
-    var toString: String {
-        var formatter: DateFormatter {
-               let formatter = DateFormatter()
-               formatter.dateFormat = "dd-MM-yyyy"
-               return formatter
-           }
-        return formatter.string(from: self)
     }
 }

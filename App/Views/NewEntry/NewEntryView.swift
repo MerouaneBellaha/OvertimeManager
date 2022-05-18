@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct NewEntryView: View {
-
+    
     @State var employee: Employee
     @ObservedObject var viewModel = NewEntryViewModel()
     @Environment(\.dismiss) var dismiss
-
+    
     var body: some View {
         Form {
             Section("Set a new time entry") {
@@ -43,39 +43,33 @@ struct NewEntryView: View {
                 }
             }
             HStack {
-                Spacer()
                 Button("add") {
                     viewModel.showPopup.toggle()
                 }
                 .buttonStyle(.bordered)
-                .actionSheet(isPresented: $viewModel.showPopup) {
-                    ActionSheet(title: Text("Confirmer"),
-                                message: Text( viewModel.getPopupValidationMessage()),
-                                buttons: [
-                                    .cancel(Text("Non")),
-                                    .default(Text("Oui")) {
-                                        let newEntry = viewModel.createEntry()
-                                        employee.addEntry(entry: newEntry)
-                                        dismiss()
-                                    }
-                                ])
-                }
+                .confirmationSheet(isPresented: $viewModel.showPopup,
+                                   message: viewModel.getPopupValidationMessage(),
+                                   action: {
+                    let newEntry = viewModel.createEntry()
+                    employee.addEntry(entry: newEntry)
+                    dismiss()
+                })
                 Spacer()
                 Button("dismiss") {
                     dismiss()
                 }
                 .buttonStyle(.bordered)
-                Spacer()
             }
+            .padding()
         }
     }
 }
 
-//struct NewEntryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NewEntryView(employee: .constant(EmployeeFactory.employee))
-//    }
-//}
+struct NewEntryView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewEntryView(employee: EmployeeFactory.employee)
+    }
+}
 
 extension NewEntryView {
     var datePickerView: some View {
