@@ -38,8 +38,6 @@ struct HomeView: View {
                         }
                         .onAppear {
                             employeeStore.objectWillChange.send()
-                            print(employee.overtime)
-                            
                         }
                     }
                     .onDelete(perform: employeeStore.removeEmployee)

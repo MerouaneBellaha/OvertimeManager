@@ -9,6 +9,7 @@ class Employee: Identifiable, ObservableObject {
     let lastName: String
     var overtime: Double
     let creationDate = Date()
+    var displayableName: String { lastName + " " + firstName }
     
     init(id: UUID = UUID(), entries: [TimeEntry] = [], firstName: String, lastName: String, overtime: Double) {
         self.id = id
@@ -25,13 +26,9 @@ class Employee: Identifiable, ObservableObject {
     }
     
     func addEntry(entry: TimeEntry) {
-        entries.append(entry)
+        entries.insert(entry, at: 0)
         overtime += entry.overtime
     }
-}
-
-extension Employee {
-    var displayableName: String { lastName + " " + firstName }
 }
 
 extension Array where Element == Employee {
