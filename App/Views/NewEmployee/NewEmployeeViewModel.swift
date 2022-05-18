@@ -14,7 +14,13 @@ class NewEmployeeViewModel: ObservableObject {
     @Published var overtime: Double = 0
     @Published var showPopup = false
     
-    func createEmployee() -> Employee {
+    @Published var employeeStore: EmployeeStore
+    
+    init(employeeStore: EmployeeStore) {
+        self.employeeStore = employeeStore
+    }
+    
+    private func createEmployee() -> Employee {
         if !firstName.isEmpty, !lastName.isEmpty {
             let newEntry = TimeEntry(date: .now, service: .lunch, overtime: overtime)
             return Employee(entries: [newEntry], firstName: firstName, lastName: lastName, overtime: overtime)
@@ -28,5 +34,10 @@ class NewEmployeeViewModel: ObservableObject {
     
     func getPopupValidationMessage() -> String {
         "Add \(firstName) \(lastName) with \(overtime.toString()) overtime?"
+    }
+    
+    func addNewEmployee() {
+        let newEmployee = createEmployee()
+        employeeStore.insert(newEmployee)
     }
 }

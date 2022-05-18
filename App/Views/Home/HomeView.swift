@@ -10,32 +10,33 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var viewModel: HomeViewModel
-    @StateObject var employeeStore: EmployeeStore = EmployeeStore()
     
     var body: some View {
         NavigationView {
             VStack {
                 HStackTwoButtonsView(
                     left: .init(title: "add new employee") { viewModel.showModal.toggle() },
-                    right: .init(title: "reset", action:  employeeStore.resetOvertimeToZeroForAllEmployees)
+                    right: .init(title: "reset", action:
+                                    viewModel.resetOvertimeToZeroForAllEmployees)
                 )
                 .padding()
-                .popover(isPresented: $viewModel.showModal) { NewEmployeeView(employeeStore: employeeStore)
+                .popover(isPresented: $viewModel.showModal) {
+                    NewEmployeeView(viewModel: NewEmployeeViewModel(employeeStore: viewModel.employeeStore))
                 }
                 
                 List {
-                    ForEach($employeeStore.employees) { $employee in
+                    ForEach($viewModel.employeeStore.employees) { $employee in
                         NavigationLink(
-                            destination: EmployeeView(employee: employee)
+                            destination: EmployeeView(viewModel: EmployeeViewModel(employee: employee))
                                 .navigationTitle(employee.displayableName)
                         ) {
                             EmployeeRowView(employee: $employee)
                         }
                         .onAppear {
-                            employeeStore.objectWillChange.send()
+                            viewModel.objectWillChange.send()
                         }
                     }
-                    .onDelete(perform: employeeStore.removeEmployee)
+                    .onDelete(perform: viewModel.removeEmployee)
                 }
             }
             .navigationTitle("Employees")

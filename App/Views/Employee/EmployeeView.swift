@@ -9,31 +9,28 @@ import SwiftUI
 
 struct EmployeeView: View {
     
-    @ObservedObject var viewModel = EmployeeViewModel()
-    @StateObject var employee: Employee
+    @ObservedObject var viewModel: EmployeeViewModel
     
     var body: some View {
         VStack {
             HStack {
-                Text("overtime: " + employee.overtime.toString())
+                Text("overtime: " + viewModel.employee.overtime.toString())
                 Spacer()
                 Button("add new entry") {
                     viewModel.showModal.toggle()
                 }
                 .buttonStyle(.bordered)
                 .popover(isPresented: $viewModel.showModal) {
-                    NewEntryView(employee: employee)
+                    NewEntryView(viewModel: NewEntryViewModel(employee: viewModel.employee))
                 }
             }
             .padding()
             
             List {
-                ForEach($employee.entries) { $entry in
+                ForEach($viewModel.employee.entries) { $entry in
                     EntryRowView(entry: $entry)
                 }
-                .onDelete(perform: { offsets in
-                    employee.deleteEntry(atOffsets: offsets)
-                })
+                .onDelete(perform: viewModel.deleteEntry)
             }
         }
     }
@@ -41,7 +38,7 @@ struct EmployeeView: View {
 
 struct EmployeeView_Previews: PreviewProvider {
     static var previews: some View {
-        EmployeeView(employee: EmployeeFactory.employee)
+        EmployeeView(viewModel: EmployeeViewModel(employee: EmployeeFactory.employee))
     }
 }
 

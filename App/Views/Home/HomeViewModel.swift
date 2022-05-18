@@ -9,4 +9,15 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     @Published var showModal = false
+    @Published var employeeStore: EmployeeStore = EmployeeStore()
+    
+    func removeEmployee(at offSets: IndexSet) {
+        employeeStore.removeEmployee(at: offSets)
+    }
+    
+    func resetOvertimeToZeroForAllEmployees() {
+        self.objectWillChange.send()
+        employeeStore.resetOvertimeToZeroForAllEmployees()
+    }
+
 }

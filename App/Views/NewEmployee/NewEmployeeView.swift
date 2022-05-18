@@ -9,9 +9,7 @@ import SwiftUI
 
 struct NewEmployeeView: View {
     
-    @ObservedObject var viewModel = NewEmployeeViewModel()
-    @State var employeeStore: EmployeeStore
-    
+    @ObservedObject var viewModel: NewEmployeeViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -37,8 +35,7 @@ struct NewEmployeeView: View {
                     .confirmationSheet(isPresented: $viewModel.showPopup,
                                        message: viewModel.getPopupValidationMessage(),
                                        action: {
-                        let newEmployee = viewModel.createEmployee()
-                        employeeStore.insert(newEmployee)
+                        viewModel.addNewEmployee()
                         dismiss()
                     })
                 })
@@ -49,6 +46,6 @@ struct NewEmployeeView: View {
 
 struct NewEmployeeView_Previews: PreviewProvider {
     static var previews: some View {
-        NewEmployeeView(employeeStore: EmployeeStore())
+        NewEmployeeView(viewModel: NewEmployeeViewModel(employeeStore: EmployeeStore()))
     }
 }

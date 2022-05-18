@@ -11,7 +11,7 @@ import Combine
 class EmployeeStore: ObservableObject {
     @Published var employees: [Employee] = []
     
-        init() {
+    init() {
         self.employees = getEmployees()
     }
     
@@ -23,8 +23,8 @@ class EmployeeStore: ObservableObject {
     func removeEmployee(at offsets: IndexSet) {
         employees.remove(atOffsets: offsets)
     }
-
-     func insert(_ employee: Employee) {
+    
+    func insert(_ employee: Employee) {
         employees.insert(employee, at: employees.firstIndex(where: { $0.lastName > employee.lastName }) ?? 0)
     }
     
