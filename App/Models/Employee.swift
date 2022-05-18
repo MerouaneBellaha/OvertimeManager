@@ -1,7 +1,7 @@
 
 import Foundation
 
-class Employee: Identifiable, ObservableObject {
+class Employee: Identifiable {
     let id: UUID
     let firstName: String
     let lastName: String
