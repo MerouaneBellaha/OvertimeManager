@@ -10,30 +10,32 @@ import Foundation
 class HomeViewModel: ObservableObject {
     @Published var showModal = false
     var employeeStore: EmployeeStore = EmployeeStore()
-    let employeeAdapter: EmployeeAdapter
     
-    init(employeeAdapter: EmployeeAdapter = EmployeeAdapter()) {
-        self.employeeAdapter = employeeAdapter
-        updateEmployees()
+    private let employeeService: EmployeeService
+    
+    init(employeeService: EmployeeService = EmployeeService()) {
+        self.employeeService = employeeService
+        getEmployees()
     }
     
-    func removeEmployee(at offSets: IndexSet) {
+    func deleteEmployee(at offSets: IndexSet) {
         self.objectWillChange.send()
-        employeeStore.removeEmployee(at: offSets)
+        guard let index = offSets.first else { return }
+        employeeService.deleteEmployee(employee: employeeStore.employees[index])
+        employeeStore.deleteEmployee(at: offSets)
     }
     
     func resetOvertimeToZeroForAllEmployees() {
         self.objectWillChange.send()
         employeeStore.resetOvertimeToZeroForAllEmployees()
+        employeeService.updateEmployees(employees: employeeStore.employees)
     }
     
-    func updateEmployees() {
-        employeeStore.employees = employeeAdapter.getEmployees()
+    func getEmployees() {
+        employeeStore.employees = employeeService.getEmployees()
     }
-}
-
-struct EmployeeAdapter {
-    func getEmployees() -> [Employee] {
-        EmployeeFactory.employees.sortByLastName
+    
+    func saveEmployees() {
+        employeeService.saveEmployees(employees: employeeStore.employees)
     }
 }

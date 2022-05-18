@@ -32,12 +32,12 @@ struct HomeView: View {
                         ) {
                             EmployeeRowView(employee: $employee)
                         }
-                        .onAppear {
-                            viewModel.objectWillChange.send()
-                        }
                     }
-                    .onDelete(perform: viewModel.removeEmployee)
+                    .onDelete(perform: viewModel.deleteEmployee)
                 }
+            }
+            .onAppear {
+                viewModel.objectWillChange.send()
             }
             .navigationTitle("Employees")
         }

@@ -11,6 +11,8 @@ struct EmployeeView: View {
     
     @ObservedObject var viewModel: EmployeeViewModel
     
+    var employeeService: EmployeeService = EmployeeService()
+    
     var body: some View {
         VStack {
             HStack {

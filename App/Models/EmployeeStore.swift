@@ -16,7 +16,7 @@ class EmployeeStore: ObservableObject {
         employees.indices.forEach { employees[$0].overtime = 0 }
     }
     
-    func removeEmployee(at offsets: IndexSet) {
+    func deleteEmployee(at offsets: IndexSet) {
         employees.remove(atOffsets: offsets)
     }
     

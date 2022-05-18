@@ -9,12 +9,17 @@ import Foundation
 
 struct TimeEntry: Identifiable {
     let id: UUID
-    
     let date: Date
     let service: Service
     let overtime: Double
     let author: String
     let creationDate: Date
+    
+    var displayableDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter.string(from: date)
+    }
     
     init (id: UUID = UUID(), date: Date, service: Service, overtime: Double, author: String = "pas", creationDate: Date = Date.now) {
         self.id = id
@@ -24,13 +29,23 @@ struct TimeEntry: Identifiable {
         self.author = author
         self.creationDate = creationDate
     }
-}
-
-extension TimeEntry {
-    var displayableDate: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        return dateFormatter.string(from: date)
+    
+    init (entity: TimeEntryEntity) {
+        self.id = entity.id
+        self.date = entity.date
+        self.service = entity.service
+        self.overtime = entity.overtime
+        self.author = entity.author
+        self.creationDate = entity.creationDate
+    }
+    
+    var asEntity: TimeEntryEntity {
+        TimeEntryEntity(id: id,
+                        date: date,
+                        service: service,
+                        overtime: overtime,
+                        author: author,
+                        creationDate: creationDate)
     }
 }
 

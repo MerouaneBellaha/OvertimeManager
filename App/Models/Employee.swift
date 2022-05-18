@@ -2,21 +2,31 @@
 import Foundation
 
 class Employee: Identifiable, ObservableObject {
-    var entries: [TimeEntry]
     let id: UUID
-    
     let firstName: String
     let lastName: String
+    let creationDate: Date
     var overtime: Double
-    let creationDate = Date()
+    var entries: [TimeEntry]
+    
     var displayableName: String { lastName + " " + firstName }
     
-    init(id: UUID = UUID(), entries: [TimeEntry] = [], firstName: String, lastName: String, overtime: Double) {
+    init(id: UUID = UUID(), entries: [TimeEntry] = [], firstName: String, lastName: String, overtime: Double, creationDate: Date = .now) {
         self.id = id
         self.entries = entries.sortByCreationDate
         self.firstName = firstName
         self.lastName = lastName
         self.overtime = overtime
+        self.creationDate = creationDate
+    }
+    
+    init(entity: EmployeeEntity) {
+        self.id = entity.id
+        self.entries = entity.entries.compactMap(TimeEntry.init(entity:))
+        self.firstName = entity.firstName
+        self.lastName = entity.lastName
+        self.overtime = entity.overtime
+        self.creationDate = entity.creationDate
     }
     
     func deleteEntry(atOffsets offsets: IndexSet) {
@@ -28,6 +38,15 @@ class Employee: Identifiable, ObservableObject {
     func addEntry(entry: TimeEntry) {
         entries.insert(entry, at: 0)
         overtime += entry.overtime
+    }
+    
+    var asEntity: EmployeeEntity {
+        EmployeeEntity(id: id,
+                       entries: entries.compactMap { $0.asEntity },
+                       firstName: firstName,
+                       lastName: lastName,
+                       overtime: overtime,
+                       creationDate: creationDate)
     }
 }
 

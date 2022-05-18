@@ -14,7 +14,8 @@ class NewEmployeeViewModel: ObservableObject {
     @Published var overtime: Double = 0
     @Published var showPopup = false
     
-    var employeeStore: EmployeeStore
+    private let employeeStore: EmployeeStore
+    private let employeeService: EmployeeService = EmployeeService()
     
     init(employeeStore: EmployeeStore) {
         self.employeeStore = employeeStore
@@ -27,6 +28,7 @@ class NewEmployeeViewModel: ObservableObject {
     func addNewEmployee() {
         let newEmployee = createEmployee()
         employeeStore.insert(newEmployee)
+        employeeService.saveEmployee(employee: newEmployee)
     }
     
     private func createEmployee() -> Employee {

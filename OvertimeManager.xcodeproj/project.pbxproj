@@ -33,6 +33,8 @@
 		CBDE05342834D5EA00F0D512 /* OvertimeStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */; };
 		CBDE05362834F53600F0D512 /* TimeEntryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05352834F53600F0D512 /* TimeEntryEntity.swift */; };
 		CBDE05382834F54D00F0D512 /* EmployeeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05372834F54D00F0D512 /* EmployeeEntity.swift */; };
+		CBDE053C2835267300F0D512 /* EmployeeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE053B2835267300F0D512 /* EmployeeService.swift */; };
+		CBDE053F283526AF00F0D512 /* EmployeeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE053E283526AF00F0D512 /* EmployeeApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvertimeStepperView.swift; sourceTree = "<group>"; };
 		CBDE05352834F53600F0D512 /* TimeEntryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryEntity.swift; sourceTree = "<group>"; };
 		CBDE05372834F54D00F0D512 /* EmployeeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEntity.swift; sourceTree = "<group>"; };
+		CBDE053B2835267300F0D512 /* EmployeeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeService.swift; sourceTree = "<group>"; };
+		CBDE053E283526AF00F0D512 /* EmployeeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 		CBCFD94B282F91FF00949226 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CBDE053D2835269200F0D512 /* Apis */,
+				CBDE053A2835264200F0D512 /* Services */,
 				CBCFD999283044E600949226 /* Mocks */,
 				CBCFD996283044C500949226 /* Extensions */,
 				CBCFD994283044A400949226 /* Views */,
@@ -240,6 +246,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CBDE053A2835264200F0D512 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CBDE053B2835267300F0D512 /* EmployeeService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CBDE053D2835269200F0D512 /* Apis */ = {
+			isa = PBXGroup;
+			children = (
+				CBDE053E283526AF00F0D512 /* EmployeeApi.swift */,
+			);
+			path = Apis;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -340,6 +362,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBDE052A2834C03700F0D512 /* Date+toString.swift in Sources */,
+				CBDE053F283526AF00F0D512 /* EmployeeApi.swift in Sources */,
+				CBDE053C2835267300F0D512 /* EmployeeService.swift in Sources */,
 				CBCFD99B283044F500949226 /* EmployeeFactory.swift in Sources */,
 				CBCFD976282F920400949226 /* HomeView.swift in Sources */,
 				CBCFD9932830420A00949226 /* HomeViewModel.swift in Sources */,
