@@ -25,15 +25,12 @@ struct NewEmployeeView: View {
                         TextField("firstname", text: $viewModel.firstName)
                     }
                     FormRowView(text: "Overtime: " + viewModel.overtime.toString()) {
-                        Stepper("",
-                                onIncrement: { viewModel.overtime += 0.25 },
-                                onDecrement: { viewModel.overtime -= 0.25 }
-                        )
+                        OvertimeStepperView(overtime: $viewModel.overtime)
                     }
                 }
                 
                 Section(content: {}, footer: {
-                    FormButtonsView(onAdd: $viewModel.showPopup, onDismiss: { dismiss() })
+                    FormButtonsView(onAdd: { viewModel.showPopup.toggle() }, onDismiss: { dismiss() })
                         .confirmationSheet(isPresented: $viewModel.showPopup,
                                            message: viewModel.getPopupValidationMessage(),
                                            action: {

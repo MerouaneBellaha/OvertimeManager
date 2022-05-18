@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FormButtonsView: View {
     
-    @Binding var onAdd: Bool
+    var onAdd: () -> Void
     var onDismiss: () -> Void
     
     var body: some View {
@@ -19,9 +19,10 @@ struct FormButtonsView: View {
             }
             Spacer()
             Button("add") {
-                onAdd.toggle()
+                onAdd()
             }
         }
         .buttonStyle(.bordered)
+        .font(.body)
     }
 }

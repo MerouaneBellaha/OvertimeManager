@@ -45,12 +45,12 @@ struct EmployeeView: View {
         }
     }
 }
-//
-//struct EmployeeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EmployeeView(employee: .constant(EmployeeFactory.employee))
-//    }
-//}
+
+struct EmployeeView_Previews: PreviewProvider {
+    static var previews: some View {
+        EmployeeView(employee: EmployeeFactory.employee)
+    }
+}
 
 struct EntryRowView: View {
     

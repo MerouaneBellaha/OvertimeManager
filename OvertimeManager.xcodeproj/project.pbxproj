@@ -30,6 +30,7 @@
 		CBDE052D2834C98000F0D512 /* ConfirmationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE052C2834C98000F0D512 /* ConfirmationSheet.swift */; };
 		CBDE05302834CDC300F0D512 /* FormRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE052F2834CDC300F0D512 /* FormRowView.swift */; };
 		CBDE05322834D40100F0D512 /* FormButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05312834D40100F0D512 /* FormButtonsView.swift */; };
+		CBDE05342834D5EA00F0D512 /* OvertimeStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		CBDE052C2834C98000F0D512 /* ConfirmationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationSheet.swift; sourceTree = "<group>"; };
 		CBDE052F2834CDC300F0D512 /* FormRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowView.swift; sourceTree = "<group>"; };
 		CBDE05312834D40100F0D512 /* FormButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonsView.swift; sourceTree = "<group>"; };
+		CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvertimeStepperView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 			children = (
 				CBDE052F2834CDC300F0D512 /* FormRowView.swift */,
 				CBDE05312834D40100F0D512 /* FormButtonsView.swift */,
+				CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				CB5A66D82833F92B00B0E905 /* EmployeeStore.swift in Sources */,
 				CBCFD98F282F994800949226 /* TimeEntry.swift in Sources */,
 				CB0CB08E283047CA00E86650 /* NewEmployeeViewModel.swift in Sources */,
+				CBDE05342834D5EA00F0D512 /* OvertimeStepperView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

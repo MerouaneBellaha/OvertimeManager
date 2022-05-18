@@ -16,51 +16,32 @@ struct NewEntryView: View {
     var body: some View {
         Form {
             Section("Set a new time entry") {
-                HStack {
-                    Text("date:  \(viewModel.selectedDate.toString)")
+                FormRowView(text: "date: \(viewModel.selectedDate.toString)") {
                     Spacer()
                     Button(viewModel.showDatePickerButtonLabel) {
-                        withAnimation(.easeInOut(duration: 0.4)) {
-                            viewModel.showDatePicker.toggle()
-                        }
+                        viewModel.showDatePicker.toggle()
                     }
                 }
+                
                 if viewModel.showDatePicker { datePickerView }
                 
-                Picker("service", selection: $viewModel.service) {
-                    ForEach(Service.allCases, id: \.self) {
-                        Text($0.description)
-                    }
-                }
-                .pickerStyle(.segmented)
+                servicePicker
                 
-                HStack {
-                    Text("Heures: " + viewModel.overtime.toString())
-                    Stepper("",
-                            onIncrement: { viewModel.overtime += 0.25 },
-                            onDecrement: { viewModel.overtime -= 0.25 }
-                    )
+                FormRowView(text: "Heures: " + viewModel.overtime.toString()) {
+                    OvertimeStepperView(overtime: $viewModel.overtime)
                 }
             }
-            HStack {
-                Button("add") {
-                    viewModel.showPopup.toggle()
-                }
-                .buttonStyle(.bordered)
-                .confirmationSheet(isPresented: $viewModel.showPopup,
-                                   message: viewModel.getPopupValidationMessage(),
-                                   action: {
-                    let newEntry = viewModel.createEntry()
-                    employee.addEntry(entry: newEntry)
-                    dismiss()
-                })
-                Spacer()
-                Button("dismiss") {
-                    dismiss()
-                }
-                .buttonStyle(.bordered)
-            }
-            .padding()
+            
+            Section(content: {}, footer: {
+                FormButtonsView(onAdd: { viewModel.showPopup.toggle() }, onDismiss: { dismiss() })
+                    .confirmationSheet(isPresented: $viewModel.showPopup,
+                                       message: viewModel.getPopupValidationMessage(),
+                                       action: {
+                        let newEntry = viewModel.createEntry()
+                        employee.addEntry(entry: newEntry)
+                        dismiss()
+                    })
+            })
         }
     }
 }
@@ -78,5 +59,14 @@ extension NewEntryView {
                    displayedComponents: [.date])
         .datePickerStyle(WheelDatePickerStyle())
         .labelsHidden()
+    }
+    
+    var servicePicker: some View {
+        Picker("service", selection: $viewModel.service) {
+            ForEach(Service.allCases, id: \.self) {
+                Text($0.description)
+            }
+        }
+        .pickerStyle(.segmented)
     }
 }
