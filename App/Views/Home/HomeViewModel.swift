@@ -9,9 +9,16 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     @Published var showModal = false
-    @Published var employeeStore: EmployeeStore = EmployeeStore()
+    var employeeStore: EmployeeStore = EmployeeStore()
+    let employeeAdapter: EmployeeAdapter
+    
+    init(employeeAdapter: EmployeeAdapter = EmployeeAdapter()) {
+        self.employeeAdapter = employeeAdapter
+        updateEmployees()
+    }
     
     func removeEmployee(at offSets: IndexSet) {
+        self.objectWillChange.send()
         employeeStore.removeEmployee(at: offSets)
     }
     
@@ -19,5 +26,14 @@ class HomeViewModel: ObservableObject {
         self.objectWillChange.send()
         employeeStore.resetOvertimeToZeroForAllEmployees()
     }
+    
+    func updateEmployees() {
+        employeeStore.employees = employeeAdapter.getEmployees()
+    }
+}
 
+struct EmployeeAdapter {
+    func getEmployees() -> [Employee] {
+        EmployeeFactory.employees.sortByLastName
+    }
 }

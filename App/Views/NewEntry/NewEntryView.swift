@@ -49,7 +49,7 @@ struct NewEntryView: View {
 
 struct NewEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        NewEntryView(viewModel: NewEntryViewModel(employee: EmployeeStore.employee))
+        NewEntryView(viewModel: NewEntryViewModel(employee: EmployeeFactory.employee))
     }
 }
 

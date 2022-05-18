@@ -10,11 +10,7 @@ import Combine
 
 class EmployeeStore: ObservableObject {
     @Published var employees: [Employee] = []
-    
-    init() {
-        self.employees = getEmployees()
-    }
-    
+
     func resetOvertimeToZeroForAllEmployees() {
         self.objectWillChange.send()
         employees.indices.forEach { employees[$0].overtime = 0 }
@@ -24,11 +20,8 @@ class EmployeeStore: ObservableObject {
         employees.remove(atOffsets: offsets)
     }
     
+    //FIXME: -
     func insert(_ employee: Employee) {
         employees.insert(employee, at: employees.firstIndex(where: { $0.lastName > employee.lastName }) ?? 0)
-    }
-    
-    private func getEmployees() -> [Employee] {
-        EmployeeFactory.employees.sortByLastName
     }
 }

@@ -19,26 +19,26 @@ class NewEntryViewModel: ObservableObject {
     @Published var showPopup = false
     var showDatePickerButtonLabel = "show"
     
-    @Published var employee: Employee
+    var employee: Employee
     
     init(employee: Employee) {
         self.employee = employee
-    }
-
-    private func updateShowDatePickerButtonLabel() {
-        showDatePickerButtonLabel = showDatePicker ? "hide" : "show"
     }
     
     func getPopupValidationMessage() -> String {
         "Add new entry; date: \(selectedDate.toString), service: \(service.description) with \(overtime.toString()) overtime?"
     }
     
+    func addEntry() {
+        let newEntry = createEntry()
+        employee.addEntry(entry: newEntry)
+    }
+    
     private func createEntry() -> TimeEntry {
         TimeEntry(date: selectedDate, service: service, overtime: overtime)
     }
     
-    func addEntry() {
-        let newEntry = createEntry()
-        employee.addEntry(entry: newEntry)
+    private func updateShowDatePickerButtonLabel() {
+        showDatePickerButtonLabel = showDatePicker ? "hide" : "show"
     }
 }

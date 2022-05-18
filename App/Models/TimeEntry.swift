@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TimeEntry: Identifiable, ObservableObject {
+struct TimeEntry: Identifiable {
     let id: UUID
     
     let date: Date

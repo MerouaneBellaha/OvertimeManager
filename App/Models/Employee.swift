@@ -2,7 +2,7 @@
 import Foundation
 
 class Employee: Identifiable, ObservableObject {
-    @Published var entries: [TimeEntry]
+    var entries: [TimeEntry]
     let id: UUID
     
     let firstName: String
