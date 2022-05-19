@@ -34,24 +34,24 @@ struct NewEntryView: View {
             Section(content: {}, footer: {
                 HStackTwoButtonsView(
                     left: .init(title: "dismiss", action: { dismiss() }),
-                    right: .init(title: "add", action: { viewModel.showPopup.toggle() })
+                    right: .init(title: "add", action: { viewModel.showConfirmationSheet.toggle() })
                 )
-                .confirmationSheet(isPresented: $viewModel.showPopup,
-                                   message: viewModel.getPopupValidationMessage(),
+                .confirmationSheet(isPresented: $viewModel.showConfirmationSheet,
+                                   message: viewModel.getConfirmationSheetMessage(),
                                    action: {
-                    viewModel.addEntry()
+                    viewModel.didTapAddEntryConfirmation()
                     dismiss()
                 })
             })
         }
     }
 }
-//
-//struct NewEntryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NewEntryView(viewModel: NewEntryViewModel(employee: EmployeeFactory.employee))
-//    }
-//}
+
+struct NewEntryView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewEntryView(viewModel: NewEntryViewModel(employee: EmployeeFactory.employee))
+    }
+}
 
 extension NewEntryView {
     var datePickerView: some View {

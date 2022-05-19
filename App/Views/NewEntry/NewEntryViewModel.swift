@@ -16,27 +16,29 @@ class NewEntryViewModel: ObservableObject {
     @Published var service: Service = .lunch
     @Published var overtime: Double = 0.0
     
-    @Published var showPopup = false
+    @Published var showConfirmationSheet = false
     var showDatePickerButtonLabel = "show"
     
     private let employee: Employee
-    private let updateEmployee: (Employee) -> ()
-//    private let employeeService: EmployeeService = EmployeeService()
+    private let employeeService: EmployeeService = EmployeeService()
     
-    init(employee: Employee, updateEmployee: @escaping (Employee) -> ()) {
+    init(employee: Employee) {
         self.employee = employee
-        self.updateEmployee = updateEmployee
     }
     
-    func getPopupValidationMessage() -> String {
+    func getConfirmationSheetMessage() -> String {
         "Add new entry; date: \(selectedDate.toString), service: \(service.description) with \(overtime.toString()) overtime?"
     }
     
-    func addEntry() {
+    func didTapAddEntryConfirmation() {
+        addEntryForEmployee()
+        employeeService.updateEmployee(employee: employee)
+    }
+    
+    private func addEntryForEmployee() {
         let newEntry = createEntry()
-        employee.addEntry(entry: newEntry)
-        updateEmployee(employee)
-//        employeeService.updateEmployee(employee: employee)
+        employee.entries.insert(newEntry, at: 0)
+        employee.overtime += newEntry.overtime
     }
     
     private func createEntry() -> TimeEntry {

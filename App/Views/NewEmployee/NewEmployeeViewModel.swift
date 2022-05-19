@@ -12,23 +12,28 @@ class NewEmployeeViewModel: ObservableObject {
     @Published var firstName: String = ""
     @Published var lastName: String = ""
     @Published var overtime: Double = 0
-    @Published var showPopup = false
+    @Published var showConfirmationSheet = false
     
     private let employeeStore: EmployeeStore
     private let employeeService: EmployeeService = EmployeeService()
-    
+
     init(employeeStore: EmployeeStore) {
         self.employeeStore = employeeStore
     }
     
-    func getPopupValidationMessage() -> String {
+    func getConfirmationSheetMessage() -> String {
         "Add \(firstName) \(lastName) with \(overtime.toString()) overtime?"
     }
     
-    func addNewEmployee() {
+    func didTapAddEmployeeConfirmation() {
         let newEmployee = createEmployee()
-        employeeStore.insert(newEmployee)
+        addEmployee(employee: newEmployee)
         employeeService.saveEmployee(employee: newEmployee)
+    }
+    
+    private func addEmployee(employee: Employee) {
+        //FIXME: -
+        employeeStore.employees.insert(employee, at: employeeStore.employees.firstIndex(where: { $0.lastName > employee.lastName }) ?? 0)
     }
     
     private func createEmployee() -> Employee {

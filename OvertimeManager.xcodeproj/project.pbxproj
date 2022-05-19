@@ -171,6 +171,7 @@
 		CBCFD989282F98A400949226 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				CBCFD990282F9CF900949226 /* Service.swift */,
 				CBDE05352834F53600F0D512 /* TimeEntryEntity.swift */,
 				CBDE05372834F54D00F0D512 /* EmployeeEntity.swift */,
 			);
@@ -238,7 +239,6 @@
 		CBDE05392834F57400F0D512 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CBCFD990282F9CF900949226 /* Service.swift */,
 				CBCFD98A282F98CB00949226 /* Employee.swift */,
 				CBCFD98E282F994800949226 /* TimeEntry.swift */,
 				CB5A66D72833F92B00B0E905 /* EmployeeStore.swift */,

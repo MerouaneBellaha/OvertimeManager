@@ -17,15 +17,17 @@ struct HomeView: View {
                 HStackTwoButtonsView(
                     left: .init(title: "add new employee") { viewModel.showModal.toggle() },
                     right: .init(title: "reset", action:
-                                    viewModel.resetOvertimeToZeroForAllEmployees)
+                                    viewModel.didTapResetOvertime)
                 )
                 .padding()
                 .popover(isPresented: $viewModel.showModal) {
-                    NewEmployeeView(viewModel: NewEmployeeViewModel(employeeStore: viewModel.employeeStore))
+                    NewEmployeeView(viewModel:NewEmployeeViewModel(employeeStore: viewModel.employeeStore))
                 }
                 
                 List {
                     ForEach($viewModel.employeeStore.employees) { $employee in
+                        
+                        
                         NavigationLink(
                             destination: EmployeeView(viewModel: EmployeeViewModel(employee: employee))
                                 .navigationTitle(employee.displayableName)
@@ -33,7 +35,7 @@ struct HomeView: View {
                             EmployeeRowView(employee: $employee)
                         }
                     }
-                    .onDelete(perform: viewModel.deleteEmployee)
+                    .onDelete(perform: viewModel.didSwapToDeleteEmployee)
                 }
             }
             .onAppear {

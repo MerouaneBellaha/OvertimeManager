@@ -22,8 +22,7 @@ struct EmployeeView: View {
                 .buttonStyle(.bordered)
                 .popover(isPresented: $viewModel.showModal) {
                     NewEntryView(viewModel:
-                                    NewEntryViewModel(employee: viewModel.employee,
-                                                      updateEmployee: viewModel.updateEmployee(employee:))
+                                    NewEntryViewModel(employee: viewModel.employee)
                     )
                 }
             }
@@ -33,7 +32,7 @@ struct EmployeeView: View {
                 ForEach($viewModel.employee.entries) { $entry in
                     EntryRowView(entry: $entry)
                 }
-                .onDelete(perform: viewModel.deleteEntry)
+                .onDelete(perform: viewModel.didSwapToDeleteEntry)
             }
         }
     }

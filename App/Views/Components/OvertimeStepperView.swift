@@ -9,12 +9,12 @@ import SwiftUI
 
 struct OvertimeStepperView: View {
     @Binding var overtime: Double
-    private let incrementValue = 0.25
+    private let value = 0.25
     
     var body: some View {
         Stepper("",
-                onIncrement: { overtime += incrementValue },
-                onDecrement: { overtime -= incrementValue }
+                onIncrement: { overtime += value },
+                onDecrement: { overtime -= value }
         )
     }
 }

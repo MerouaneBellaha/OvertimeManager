@@ -18,13 +18,16 @@ class EmployeeViewModel: ObservableObject {
         self.employee = employee
     }
     
-    func deleteEntry(at offSets: IndexSet) {
-        self.objectWillChange.send()
-        employee.deleteEntry(atOffsets: offSets)
+    func didSwapToDeleteEntry(at offsets: IndexSet) {
+        deleteEntryForEmployee(at: offsets)
         employeeService.updateEmployee(employee: employee)
     }
     
-    func updateEmployee(employee: Employee) {
-        employeeService.updateEmployee(employee: employee)
+    private func deleteEntryForEmployee(at offsets: IndexSet) {
+        self.objectWillChange.send()
+        
+        guard let index = offsets.first else { return }
+        employee.overtime -= employee.entries[index].overtime
+        employee.entries.remove(atOffsets: offsets)
     }
 }

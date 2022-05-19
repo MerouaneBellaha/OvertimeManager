@@ -29,17 +29,6 @@ class Employee: Identifiable {
         self.creationDate = entity.creationDate
     }
     
-    func deleteEntry(atOffsets offsets: IndexSet) {
-        guard let index = offsets.first else { return }
-        overtime -= entries[index].overtime
-        entries.remove(atOffsets: offsets)
-    }
-    
-    func addEntry(entry: TimeEntry) {
-        entries.insert(entry, at: 0)
-        overtime += entry.overtime
-    }
-    
     var asEntity: EmployeeEntity {
         EmployeeEntity(id: id,
                        entries: entries.compactMap { $0.asEntity },
