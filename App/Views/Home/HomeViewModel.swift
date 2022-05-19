@@ -10,7 +10,6 @@ import Foundation
 class HomeViewModel: ObservableObject {
     @Published var showModal = false
     
-    
     var employeeStore: EmployeeStore = EmployeeStore()
     private let employeeService: EmployeeService
     
@@ -22,8 +21,8 @@ class HomeViewModel: ObservableObject {
     func didSwapToDeleteEmployee(at offsets: IndexSet) {
         guard let index = offsets.first else { return }
         
-        deleteEmployee(at: offsets)
         employeeService.deleteEmployee(employee: employeeStore.employees[index])
+        deleteEmployee(at: offsets)
     }
     
     func didTapResetOvertime() {
