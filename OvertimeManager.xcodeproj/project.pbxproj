@@ -31,10 +31,10 @@
 		CBDE05302834CDC300F0D512 /* FormRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE052F2834CDC300F0D512 /* FormRowView.swift */; };
 		CBDE05322834D40100F0D512 /* HStackTwoButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05312834D40100F0D512 /* HStackTwoButtonsView.swift */; };
 		CBDE05342834D5EA00F0D512 /* OvertimeStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */; };
-		CBDE05362834F53600F0D512 /* TimeEntryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05352834F53600F0D512 /* TimeEntryEntity.swift */; };
-		CBDE05382834F54D00F0D512 /* EmployeeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05372834F54D00F0D512 /* EmployeeEntity.swift */; };
-		CBDE053C2835267300F0D512 /* EmployeeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE053B2835267300F0D512 /* EmployeeService.swift */; };
-		CBDE053F283526AF00F0D512 /* EmployeeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE053E283526AF00F0D512 /* EmployeeApi.swift */; };
+		CBDE05362834F53600F0D512 /* TimeEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05352834F53600F0D512 /* TimeEntryModel.swift */; };
+		CBDE05382834F54D00F0D512 /* EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05372834F54D00F0D512 /* EmployeeModel.swift */; };
+		CBDE053C2835267300F0D512 /* EmployeeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE053B2835267300F0D512 /* EmployeeRepository.swift */; };
+		CBDE053F283526AF00F0D512 /* EmployeeDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE053E283526AF00F0D512 /* EmployeeDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,10 +74,10 @@
 		CBDE052F2834CDC300F0D512 /* FormRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowView.swift; sourceTree = "<group>"; };
 		CBDE05312834D40100F0D512 /* HStackTwoButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackTwoButtonsView.swift; sourceTree = "<group>"; };
 		CBDE05332834D5EA00F0D512 /* OvertimeStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvertimeStepperView.swift; sourceTree = "<group>"; };
-		CBDE05352834F53600F0D512 /* TimeEntryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryEntity.swift; sourceTree = "<group>"; };
-		CBDE05372834F54D00F0D512 /* EmployeeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEntity.swift; sourceTree = "<group>"; };
-		CBDE053B2835267300F0D512 /* EmployeeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeService.swift; sourceTree = "<group>"; };
-		CBDE053E283526AF00F0D512 /* EmployeeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeApi.swift; sourceTree = "<group>"; };
+		CBDE05352834F53600F0D512 /* TimeEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryModel.swift; sourceTree = "<group>"; };
+		CBDE05372834F54D00F0D512 /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
+		CBDE053B2835267300F0D512 /* EmployeeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeRepository.swift; sourceTree = "<group>"; };
+		CBDE053E283526AF00F0D512 /* EmployeeDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +125,26 @@
 			path = NewEntry;
 			sourceTree = "<group>";
 		};
+		CB80F3E228378DFD008C0C8B /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				CBDE05352834F53600F0D512 /* TimeEntryModel.swift */,
+				CBDE05372834F54D00F0D512 /* EmployeeModel.swift */,
+				CBCFD990282F9CF900949226 /* Service.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		CB80F3E328378E27008C0C8B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CBCFD98A282F98CB00949226 /* Employee.swift */,
+				CBCFD98E282F994800949226 /* TimeEntry.swift */,
+				CB5A66D72833F92B00B0E905 /* EmployeeStore.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		CBCFD946282F91FF00949226 = {
 			isa = PBXGroup;
 			children = (
@@ -137,13 +157,12 @@
 		CBCFD94B282F91FF00949226 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				CBDE053D2835269200F0D512 /* Apis */,
-				CBDE053A2835264200F0D512 /* Services */,
+				CBDE053D2835269200F0D512 /* Services */,
+				CBDE053A2835264200F0D512 /* Repositories */,
 				CBCFD999283044E600949226 /* Mocks */,
 				CBCFD996283044C500949226 /* Extensions */,
 				CBCFD994283044A400949226 /* Views */,
 				CBDE05392834F57400F0D512 /* Models */,
-				CBCFD989282F98A400949226 /* Entities */,
 				CBCFD94C282F91FF00949226 /* OvertimeManagerApp.swift */,
 				CBCFD94E282F920300949226 /* Assets.xcassets */,
 			);
@@ -166,16 +185,6 @@
 				CBCFD966282F920400949226 /* Tests_iOSLaunchTests.swift */,
 			);
 			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		CBCFD989282F98A400949226 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				CBCFD990282F9CF900949226 /* Service.swift */,
-				CBDE05352834F53600F0D512 /* TimeEntryEntity.swift */,
-				CBDE05372834F54D00F0D512 /* EmployeeEntity.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		CBCFD994283044A400949226 /* Views */ = {
@@ -239,27 +248,26 @@
 		CBDE05392834F57400F0D512 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CBCFD98A282F98CB00949226 /* Employee.swift */,
-				CBCFD98E282F994800949226 /* TimeEntry.swift */,
-				CB5A66D72833F92B00B0E905 /* EmployeeStore.swift */,
+				CB80F3E328378E27008C0C8B /* App */,
+				CB80F3E228378DFD008C0C8B /* DB */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CBDE053A2835264200F0D512 /* Services */ = {
+		CBDE053A2835264200F0D512 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				CBDE053B2835267300F0D512 /* EmployeeService.swift */,
+				CBDE053B2835267300F0D512 /* EmployeeRepository.swift */,
 			);
-			path = Services;
+			path = Repositories;
 			sourceTree = "<group>";
 		};
-		CBDE053D2835269200F0D512 /* Apis */ = {
+		CBDE053D2835269200F0D512 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CBDE053E283526AF00F0D512 /* EmployeeApi.swift */,
+				CBDE053E283526AF00F0D512 /* EmployeeDB.swift */,
 			);
-			path = Apis;
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,8 +370,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBDE052A2834C03700F0D512 /* Date+toString.swift in Sources */,
-				CBDE053F283526AF00F0D512 /* EmployeeApi.swift in Sources */,
-				CBDE053C2835267300F0D512 /* EmployeeService.swift in Sources */,
+				CBDE053F283526AF00F0D512 /* EmployeeDB.swift in Sources */,
+				CBDE053C2835267300F0D512 /* EmployeeRepository.swift in Sources */,
 				CBCFD99B283044F500949226 /* EmployeeFactory.swift in Sources */,
 				CBCFD976282F920400949226 /* HomeView.swift in Sources */,
 				CBCFD9932830420A00949226 /* HomeViewModel.swift in Sources */,
@@ -372,9 +380,9 @@
 				CBDE05322834D40100F0D512 /* HStackTwoButtonsView.swift in Sources */,
 				CBCFD998283044D200949226 /* Double+toString.swift in Sources */,
 				CBCFD98B282F98CB00949226 /* Employee.swift in Sources */,
-				CBDE05382834F54D00F0D512 /* EmployeeEntity.swift in Sources */,
+				CBDE05382834F54D00F0D512 /* EmployeeModel.swift in Sources */,
 				CBDE05302834CDC300F0D512 /* FormRowView.swift in Sources */,
-				CBDE05362834F53600F0D512 /* TimeEntryEntity.swift in Sources */,
+				CBDE05362834F53600F0D512 /* TimeEntryModel.swift in Sources */,
 				CB54A6DA2830E8E70096A9F3 /* EntryFactory.swift in Sources */,
 				CBCFD991282F9CF900949226 /* Service.swift in Sources */,
 				CB696BE728325E8B001987C5 /* NewEntryView.swift in Sources */,

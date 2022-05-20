@@ -1,5 +1,5 @@
 //
-//  TimeEntryEntity.swift
+//  TimeEntryModel.swift
 //  OvertimeManager (iOS)
 //
 //  Created by Merouane Bellaha on 18/05/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TimeEntryEntity: Codable {
+struct TimeEntryModel: Codable {
     let id: UUID
     let date: Date
     let service: Service

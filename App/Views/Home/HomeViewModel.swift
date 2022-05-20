@@ -11,34 +11,27 @@ class HomeViewModel: ObservableObject {
     @Published var showModal = false
     
     var employeeStore: EmployeeStore = EmployeeStore()
-    private let employeeService: EmployeeService
     
-    init(employeeService: EmployeeService = EmployeeService()) {
-        self.employeeService = employeeService
+    private let employeeRepository: EmployeeRepository
+    
+    init(employeeService: EmployeeRepository = EmployeeRepository()) {
+        self.employeeRepository = employeeService
         employeeStore.employees = employeeService.getEmployees()
     }
     
     func didSwapToDeleteEmployee(at offsets: IndexSet) {
+        self.objectWillChange.send()
+        
         guard let index = offsets.first else { return }
         
-        employeeService.deleteEmployee(employee: employeeStore.employees[index])
-        deleteEmployee(at: offsets)
+        employeeRepository.deleteEmployee(employee: employeeStore.employees[index])
+        employeeStore.deleteEmployee(at: offsets)
     }
     
     func didTapResetOvertime() {
-        resetOvertimeToZeroForAllEmployees()
-        employeeService.updateEmployees(employees: employeeStore.employees)
-    }
-    
-    private func deleteEmployee(at offSets: IndexSet) {
         self.objectWillChange.send()
-        
-        employeeStore.employees.remove(atOffsets: offSets)
-    }
-    
-    private func resetOvertimeToZeroForAllEmployees() {
-        self.objectWillChange.send()
-        
-        employeeStore.employees.indices.forEach { employeeStore.employees[$0].overtime = 0 }
+
+        employeeStore.resetOvertimeToZeroForAllEmployees()
+        employeeRepository.updateEmployees(employees: employeeStore.employees)
     }
 }

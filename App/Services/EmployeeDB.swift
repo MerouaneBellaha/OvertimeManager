@@ -1,5 +1,5 @@
 //
-//  EmployeeApi.swift
+//  EmployeeDB.swift
 //  OvertimeManager (iOS)
 //
 //  Created by Merouane Bellaha on 18/05/2022.
@@ -7,16 +7,7 @@
 
 import Foundation
 
-protocol EmployeeApi {
-    func getEmployees() -> [EmployeeEntity]
-    func saveEmployees(employees: [EmployeeEntity])
-    func saveEmployee(employee: EmployeeEntity)
-    func updateEmployee(employee: EmployeeEntity)
-    func updateEmployees(employees: [EmployeeEntity])
-    func deleteEmployee(employee: EmployeeEntity)
-}
-
-struct UserDefaultApi: EmployeeApi {
+struct EmployeeDB: EmployeeRepositoryProtocol {
     
     private let defaults: UserDefaults
     private let employeesKey = "employees"
@@ -25,11 +16,11 @@ struct UserDefaultApi: EmployeeApi {
         self.defaults = userDefaults
     }
     
-    func getEmployees() -> [EmployeeEntity] {
+    func getEmployees() -> [EmployeeModel] {
         if let data = defaults.data(forKey: employeesKey) {
             do {
                 let decoder = JSONDecoder()
-                let employees = try decoder.decode([EmployeeEntity].self, from: data)
+                let employees = try decoder.decode([EmployeeModel].self, from: data)
                 return employees
             } catch {
                 print("unable to decode (\(error))")
@@ -39,7 +30,7 @@ struct UserDefaultApi: EmployeeApi {
         return []
     }
     
-    func saveEmployees(employees: [EmployeeEntity]) {
+    func saveEmployees(employees: [EmployeeModel]) {
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(employees)
@@ -49,14 +40,14 @@ struct UserDefaultApi: EmployeeApi {
         }
     }
     
-    func saveEmployee(employee: EmployeeEntity) {
+    func saveEmployee(employee: EmployeeModel) {
         var savedEmployees = getEmployees()
         savedEmployees.append(employee)
         saveEmployees(employees: savedEmployees)
     }
     
     
-    func updateEmployee(employee: EmployeeEntity) {
+    func updateEmployee(employee: EmployeeModel) {
         var employees = getEmployees()
         guard let indexToUpdate = employees.firstIndex(where: { ($0.id == employee.id) }) else {
             print("can't find employee")
@@ -66,11 +57,11 @@ struct UserDefaultApi: EmployeeApi {
         saveEmployees(employees: employees)
     }
     
-    func updateEmployees(employees: [EmployeeEntity]) {
+    func updateEmployees(employees: [EmployeeModel]) {
         saveEmployees(employees: employees)
     }
     
-    func deleteEmployee(employee: EmployeeEntity) {
+    func deleteEmployee(employee: EmployeeModel) {
         var employees = getEmployees()
         guard let indexToUpdate = employees.firstIndex(where: { $0.id == employee.id }) else {
             print("can't find employee")

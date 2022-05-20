@@ -30,7 +30,7 @@ struct TimeEntry: Identifiable {
         self.creationDate = creationDate
     }
     
-    init (entity: TimeEntryEntity) {
+    init (entity: TimeEntryModel) {
         self.id = entity.id
         self.date = entity.date
         self.service = entity.service
@@ -39,8 +39,8 @@ struct TimeEntry: Identifiable {
         self.creationDate = entity.creationDate
     }
     
-    var asEntity: TimeEntryEntity {
-        TimeEntryEntity(id: id,
+    var asEntity: TimeEntryModel {
+        TimeEntryModel(id: id,
                         date: date,
                         service: service,
                         overtime: overtime,

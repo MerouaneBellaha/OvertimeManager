@@ -20,7 +20,7 @@ class NewEntryViewModel: ObservableObject {
     var showDatePickerButtonLabel = "show"
     
     private let employee: Employee
-    private let employeeService: EmployeeService = EmployeeService()
+    private let employeeRepository: EmployeeRepository = EmployeeRepository()
     
     init(employee: Employee) {
         self.employee = employee
@@ -31,14 +31,9 @@ class NewEntryViewModel: ObservableObject {
     }
     
     func didTapAddEntryConfirmation() {
-        addEntryForEmployee()
-        employeeService.updateEmployee(employee: employee)
-    }
-    
-    private func addEntryForEmployee() {
         let newEntry = createEntry()
-        employee.entries.insert(newEntry, at: 0)
-        employee.overtime += newEntry.overtime
+        employee.addEntry(entry: newEntry)
+        employeeRepository.updateEmployee(employee: employee)
     }
     
     private func createEntry() -> TimeEntry {

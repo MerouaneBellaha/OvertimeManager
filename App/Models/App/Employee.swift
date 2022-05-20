@@ -20,7 +20,7 @@ class Employee: Identifiable {
         self.creationDate = creationDate
     }
     
-    init(entity: EmployeeEntity) {
+    init(entity: EmployeeModel) {
         self.id = entity.id
         self.entries = entity.entries.compactMap(TimeEntry.init(entity:))
         self.firstName = entity.firstName
@@ -29,13 +29,24 @@ class Employee: Identifiable {
         self.creationDate = entity.creationDate
     }
     
-    var asEntity: EmployeeEntity {
-        EmployeeEntity(id: id,
+    var asEntity: EmployeeModel {
+        EmployeeModel(id: id,
                        entries: entries.compactMap { $0.asEntity },
                        firstName: firstName,
                        lastName: lastName,
                        overtime: overtime,
                        creationDate: creationDate)
+    }
+    
+    func deleteEntry(at offsets: IndexSet) {
+        guard let index = offsets.first else { return }
+        overtime -= entries[index].overtime
+        entries.remove(atOffsets: offsets)
+    }
+    
+    func addEntry(entry: TimeEntry) {
+        entries.insert(entry, at: 0)
+        overtime += entry.overtime
     }
 }
 

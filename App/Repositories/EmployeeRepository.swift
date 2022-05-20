@@ -7,9 +7,18 @@
 
 import Foundation
 
-struct EmployeeService {
+protocol EmployeeRepositoryProtocol {
+    func getEmployees() -> [EmployeeModel]
+    func saveEmployees(employees: [EmployeeModel])
+    func saveEmployee(employee: EmployeeModel)
+    func updateEmployee(employee: EmployeeModel)
+    func updateEmployees(employees: [EmployeeModel])
+    func deleteEmployee(employee: EmployeeModel)
+}
+
+struct EmployeeRepository {
     
-    let api: EmployeeApi = UserDefaultApi()
+    let api: EmployeeRepositoryProtocol = EmployeeDB()
     
     func getEmployees() -> [Employee] {
         api.getEmployees().compactMap(Employee.init(entity:))

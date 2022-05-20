@@ -15,7 +15,7 @@ class NewEmployeeViewModel: ObservableObject {
     @Published var showConfirmationSheet = false
     
     private let employeeStore: EmployeeStore
-    private let employeeService: EmployeeService = EmployeeService()
+    private let employeeRepository: EmployeeRepository = EmployeeRepository()
 
     init(employeeStore: EmployeeStore) {
         self.employeeStore = employeeStore
@@ -27,13 +27,8 @@ class NewEmployeeViewModel: ObservableObject {
     
     func didTapAddEmployeeConfirmation() {
         let newEmployee = createEmployee()
-        addEmployee(employee: newEmployee)
-        employeeService.saveEmployee(employee: newEmployee)
-    }
-    
-    private func addEmployee(employee: Employee) {
-        //FIXME: -
-        employeeStore.employees.insert(employee, at: employeeStore.employees.firstIndex(where: { $0.lastName > employee.lastName }) ?? 0)
+        employeeStore.addEmployee(employee: newEmployee)
+        employeeRepository.saveEmployee(employee: newEmployee)
     }
     
     private func createEmployee() -> Employee {
