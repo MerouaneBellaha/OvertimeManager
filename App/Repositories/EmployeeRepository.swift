@@ -20,27 +20,35 @@ struct EmployeeRepository {
     
     let db: EmployeeRepositoryProtocol = EmployeeDB()
     
-    func getEmployees() -> [Employee] {
-        db.getEmployees().compactMap(Employee.init(entity:))
+    let firebase: FireStoreDB = FireStoreDB()
+    
+    func getEmployees(notification: @escaping ([Employee]) -> Void) {
+        firebase.getEmployees { result in notification(result.compactMap { Employee(entity: $0) }) }
     }
     
     func saveEmployees(employees: [Employee]) {
         db.saveEmployees(employees: employees.compactMap { $0.asEntity })
     }
     
-    func saveEmployee(employee: Employee) {
-        db.saveEmployee(employee: employee.asEntity)
+    func saveEmployee(employee: Employee,
+                      completion: @escaping (Bool) -> Void) {
+        firebase.saveEmployee(employee: employee.asEntity) { result in completion(result) }
     }
     
     func updateEmployee(employee: Employee) {
         db.updateEmployee(employee: employee.asEntity)
     }
     
-    func deleteEmployee(employee: Employee) {
-        db.deleteEmployee(employee: employee.asEntity)
+    func deleteEmployee(employee: Employee,
+                        completion: @escaping (Bool) -> Void) {
+        firebase.deleteEmployee(employee: employee.asEntity) { result in completion(result)}
     }
     
-    func updateEmployees(employees: [Employee]) {
-        db.updateEmployees(employees: employees.compactMap { $0.asEntity } )
+    func updateEmployees(employees: [Employee],
+                         completion: @escaping (Bool) -> Void) {
+        
+        firebase.updateEmployees(employees: employees.compactMap { $0.asEntity }) { result in completion(result) }
+
+//        db.updateEmployees(employees: employees.compactMap { $0.asEntity } )
     }
 }

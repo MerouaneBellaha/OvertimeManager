@@ -9,34 +9,65 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-//struct FireStoreDB: EmployeeRepositoryProtocol {
+struct FireStoreDB {
+    
+    let db = Firestore.firestore()
+    
+    func getEmployees(notification: @escaping ([EmployeeModel]) -> Void) {
+        db
+            .collection("employees")
+            .addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    print("no docs")
+                    notification([])
+                    return
+                }
+                print("listener")
+                notification(
+                    documents.compactMap { try? $0.data(as: EmployeeModel.self) }
+                )
+            }
+    }
+    
+    
+//    func saveEmployees(employees: [EmployeeModel]) {
 //
-//    func getEmployees() -> [EmployeeEntity] {
-//        <#code#>
 //    }
-//
-//    func saveEmployees(employees: [EmployeeEntity]) {
-//        <#code#>
-//    }
-//
-//    func saveEmployee(employee: EmployeeEntity) {
-//        <#code#>
-//    }
-//
-//    func updateEmployee(employee: EmployeeEntity) {
-//        <#code#>
-//    }
-//
-//    func updateEmployees(employees: [EmployeeEntity]) {
-//        <#code#>
-//    }
-//
-//    func deleteEmployee(employee: EmployeeEntity) {
-//        <#code#>
-//    }
-//
-//
-//}
+    
+    func saveEmployee(employee: EmployeeModel,
+                      completion: @escaping (Bool) -> Void) {
+        do {
+            try db.collection("employees").document(employee.id.uuidString).setData(from: employee)
+            completion(true)
+        } catch {
+            print("Error writing document: \(error)")
+            completion(false)
+        }
+    }
+    
+    func updateEmployee(employee: EmployeeModel) {
+        
+    }
+    
+    func updateEmployees(employees: [EmployeeModel],
+                         completion: @escaping ((Bool) -> Void)) {
+        //TODO: - pass fields+values to update as parameters
+        let batch = db.batch()
+        employees.forEach { employee in
+            let docRef = db.collection("employees").document(employee.id.uuidString)
+            
+            batch.updateData(["overtime": employee.overtime], forDocument: docRef)
+        }
+        batch.commit { error in completion(error == nil) }
+    }
+    
+    func deleteEmployee(employee: EmployeeModel,
+                        completion: @escaping ((Bool) -> Void)) {
+        db.collection("employees").document(employee.id.uuidString).delete { error in
+            completion(error == nil)
+        }
+    }
+}
 
 struct EmployeeDB: EmployeeRepositoryProtocol {
     
@@ -81,7 +112,7 @@ struct EmployeeDB: EmployeeRepositoryProtocol {
     func updateEmployee(employee: EmployeeModel) {
         var employees = getEmployees()
         guard let indexToUpdate = employees.firstIndex(where: { ($0.id == employee.id) }) else {
-            print("can't find employee")
+            print("updateEmployee: can't find employee")
             return
         }
         employees[indexToUpdate] = employee

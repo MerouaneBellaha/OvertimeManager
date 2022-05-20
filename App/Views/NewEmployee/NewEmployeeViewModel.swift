@@ -27,8 +27,13 @@ class NewEmployeeViewModel: ObservableObject {
     
     func didTapAddEmployeeConfirmation() {
         let newEmployee = createEmployee()
+        employeeRepository.saveEmployee(employee: newEmployee) { result in
+            switch result {
+            case true: print("employee saved")
+            case false: print("error saving employee")
+            }
+        }
         employeeStore.addEmployee(employee: newEmployee)
-        employeeRepository.saveEmployee(employee: newEmployee)
     }
     
     private func createEmployee() -> Employee {

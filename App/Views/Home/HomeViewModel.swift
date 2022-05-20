@@ -14,24 +14,37 @@ class HomeViewModel: ObservableObject {
     
     private let employeeRepository: EmployeeRepository
     
-    init(employeeService: EmployeeRepository = EmployeeRepository()) {
-        self.employeeRepository = employeeService
-        employeeStore.employees = employeeService.getEmployees()
+    init(employeeRepository: EmployeeRepository = EmployeeRepository()) {
+        self.employeeRepository = employeeRepository
+        
+        employeeRepository.getEmployees { result in
+            self.objectWillChange.send()
+            self.employeeStore.employees = result.sortByLastName
+        }
     }
     
     func didSwapToDeleteEmployee(at offsets: IndexSet) {
-        self.objectWillChange.send()
-        
         guard let index = offsets.first else { return }
         
-        employeeRepository.deleteEmployee(employee: employeeStore.employees[index])
+        employeeRepository.deleteEmployee(employee: employeeStore.employees[index]) { result in
+            switch result{
+            case true: print("employee deleted")
+            case false: print("error deleting employee")
+            }
+        }
         employeeStore.deleteEmployee(at: offsets)
     }
     
     func didTapResetOvertime() {
-        self.objectWillChange.send()
-
+        let employeesToUpdate = employeeStore.employees.filter { $0.overtime != 0 }
+        if !employeesToUpdate.isEmpty {
+            employeeRepository.updateEmployees(employees: employeesToUpdate) { result in
+                switch result{
+                case true: print("employees updated")
+                case false: print("error updating employees")
+                }
+            }
+        }
         employeeStore.resetOvertimeToZeroForAllEmployees()
-        employeeRepository.updateEmployees(employees: employeeStore.employees)
     }
 }

@@ -11,6 +11,8 @@ struct HomeView: View {
     
     @ObservedObject var viewModel: HomeViewModel
     
+    var db = FireStoreDB()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -38,19 +40,16 @@ struct HomeView: View {
                     .onDelete(perform: viewModel.didSwapToDeleteEmployee)
                 }
             }
-            .onAppear {
-                viewModel.objectWillChange.send()
-            }
             .navigationTitle("Employees")
         }
     }
 }
 
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView(viewModel: HomeViewModel())
-//    }
-//}
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView(viewModel: HomeViewModel())
+    }
+}
 
 struct EmployeeRowView: View {
     
