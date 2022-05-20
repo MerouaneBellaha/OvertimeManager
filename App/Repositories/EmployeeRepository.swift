@@ -18,29 +18,29 @@ protocol EmployeeRepositoryProtocol {
 
 struct EmployeeRepository {
     
-    let api: EmployeeRepositoryProtocol = EmployeeDB()
+    let db: EmployeeRepositoryProtocol = EmployeeDB()
     
     func getEmployees() -> [Employee] {
-        api.getEmployees().compactMap(Employee.init(entity:))
+        db.getEmployees().compactMap(Employee.init(entity:))
     }
     
     func saveEmployees(employees: [Employee]) {
-        api.saveEmployees(employees: employees.compactMap { $0.asEntity })
+        db.saveEmployees(employees: employees.compactMap { $0.asEntity })
     }
     
     func saveEmployee(employee: Employee) {
-        api.saveEmployee(employee: employee.asEntity)
+        db.saveEmployee(employee: employee.asEntity)
     }
     
     func updateEmployee(employee: Employee) {
-        api.updateEmployee(employee: employee.asEntity)
+        db.updateEmployee(employee: employee.asEntity)
     }
     
     func deleteEmployee(employee: Employee) {
-        api.deleteEmployee(employee: employee.asEntity)
+        db.deleteEmployee(employee: employee.asEntity)
     }
     
     func updateEmployees(employees: [Employee]) {
-        api.updateEmployees(employees: employees.compactMap { $0.asEntity } )
+        db.updateEmployees(employees: employees.compactMap { $0.asEntity } )
     }
 }

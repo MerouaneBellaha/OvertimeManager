@@ -6,6 +6,37 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
+//struct FireStoreDB: EmployeeRepositoryProtocol {
+//
+//    func getEmployees() -> [EmployeeEntity] {
+//        <#code#>
+//    }
+//
+//    func saveEmployees(employees: [EmployeeEntity]) {
+//        <#code#>
+//    }
+//
+//    func saveEmployee(employee: EmployeeEntity) {
+//        <#code#>
+//    }
+//
+//    func updateEmployee(employee: EmployeeEntity) {
+//        <#code#>
+//    }
+//
+//    func updateEmployees(employees: [EmployeeEntity]) {
+//        <#code#>
+//    }
+//
+//    func deleteEmployee(employee: EmployeeEntity) {
+//        <#code#>
+//    }
+//
+//
+//}
 
 struct EmployeeDB: EmployeeRepositoryProtocol {
     
