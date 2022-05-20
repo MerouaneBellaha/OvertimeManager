@@ -39,9 +39,9 @@ struct EmployeeRepository {
         db.updateEmployee(employee: employee.asEntity)
     }
     
-    func deleteEmployee(employee: Employee,
+    func deleteEmployee(id: UUID,
                         completion: @escaping (Bool) -> Void) {
-        firebase.deleteEmployee(employee: employee.asEntity) { result in completion(result)}
+        firebase.deleteEmployee(id: id.uuidString) { result in completion(result)}
     }
     
     func updateEmployees(employees: [Employee],

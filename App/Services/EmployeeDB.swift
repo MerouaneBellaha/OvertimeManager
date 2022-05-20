@@ -56,14 +56,14 @@ struct FireStoreDB {
         employees.forEach { employee in
             let docRef = db.collection("employees").document(employee.id.uuidString)
             
-            batch.updateData(["overtime": employee.overtime], forDocument: docRef)
+            batch.updateData(["overtime": 0], forDocument: docRef)
         }
         batch.commit { error in completion(error == nil) }
     }
     
-    func deleteEmployee(employee: EmployeeModel,
+    func deleteEmployee(id: String,
                         completion: @escaping ((Bool) -> Void)) {
-        db.collection("employees").document(employee.id.uuidString).delete { error in
+        db.collection("employees").document(id).delete { error in
             completion(error == nil)
         }
     }

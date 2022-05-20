@@ -25,14 +25,16 @@ class HomeViewModel: ObservableObject {
     
     func didSwapToDeleteEmployee(at offsets: IndexSet) {
         guard let index = offsets.first else { return }
+        let id = employeeStore.employees[index].id
+        employeeStore.deleteEmployee(at: offsets)
         
-        employeeRepository.deleteEmployee(employee: employeeStore.employees[index]) { result in
+        employeeRepository.deleteEmployee(id: id) { result in
             switch result{
             case true: print("employee deleted")
             case false: print("error deleting employee")
             }
         }
-        employeeStore.deleteEmployee(at: offsets)
+        
     }
     
     func didTapResetOvertime() {
