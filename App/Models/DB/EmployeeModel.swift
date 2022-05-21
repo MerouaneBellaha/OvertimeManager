@@ -9,9 +9,9 @@ import Foundation
 
 struct EmployeeModel: Codable {
     let id: UUID
-    var entries: [TimeEntryModel]
+    let entries: [TimeEntryModel]
     let firstName: String
     let lastName: String
-    var overtime: Double
+    let overtime: Double
     let creationDate: Date
 }

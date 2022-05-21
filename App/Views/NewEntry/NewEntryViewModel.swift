@@ -33,7 +33,13 @@ class NewEntryViewModel: ObservableObject {
     func didTapAddEntryConfirmation() {
         let newEntry = createEntry()
         employee.addEntry(entry: newEntry)
-        employeeRepository.updateEmployee(employee: employee)
+        
+        employeeRepository.saveEmployee(employee: employee)  { result in
+            switch result {
+            case true: print("entry ADDED")
+            case false: print("error ADDING entry")
+            }
+        }
     }
     
     private func createEntry() -> TimeEntry {

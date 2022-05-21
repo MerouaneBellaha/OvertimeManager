@@ -20,7 +20,6 @@ class EmployeeStore: ObservableObject {
     }
     
     func addEmployee(employee: Employee) {
-       //FIXME: -
-        employees.insert(employee, at: employees.firstIndex(where: { $0.lastName > employee.lastName }) ?? 0)
+        employees.append(employee)
     }
 }

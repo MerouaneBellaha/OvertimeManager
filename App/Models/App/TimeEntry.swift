@@ -41,11 +41,11 @@ struct TimeEntry: Identifiable {
     
     var asEntity: TimeEntryModel {
         TimeEntryModel(id: id,
-                        date: date,
-                        service: service,
-                        overtime: overtime,
-                        author: author,
-                        creationDate: creationDate)
+                       date: date,
+                       service: service,
+                       overtime: overtime,
+                       author: author,
+                       creationDate: creationDate)
     }
 }
 

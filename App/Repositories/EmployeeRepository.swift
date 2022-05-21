@@ -7,48 +7,36 @@
 
 import Foundation
 
-protocol EmployeeRepositoryProtocol {
-    func getEmployees() -> [EmployeeModel]
-    func saveEmployees(employees: [EmployeeModel])
-    func saveEmployee(employee: EmployeeModel)
-    func updateEmployee(employee: EmployeeModel)
-    func updateEmployees(employees: [EmployeeModel])
-    func deleteEmployee(employee: EmployeeModel)
-}
-
 struct EmployeeRepository {
+
+    private let db: EmployeeRepositoryProtocol = FireStoreDB()
     
-    let db: EmployeeRepositoryProtocol = EmployeeDB()
-    
-    let firebase: FireStoreDB = FireStoreDB()
+    private let entriesKey = "entries"
     
     func getEmployees(notification: @escaping ([Employee]) -> Void) {
-        firebase.getEmployees { result in notification(result.compactMap { Employee(entity: $0) }) }
-    }
-    
-    func saveEmployees(employees: [Employee]) {
-        db.saveEmployees(employees: employees.compactMap { $0.asEntity })
+        db.getEmployees { result in notification(result.map { Employee(entity: $0) }) }
     }
     
     func saveEmployee(employee: Employee,
                       completion: @escaping (Bool) -> Void) {
-        firebase.saveEmployee(employee: employee.asEntity) { result in completion(result) }
+        db.saveEmployee(employee: employee.asEntity) { result in completion(result) }
     }
     
-    func updateEmployee(employee: Employee) {
-        db.updateEmployee(employee: employee.asEntity)
+    func updateEmployee(id: UUID,
+                        fields: [String: Any],
+                        completion: @escaping (Bool) -> Void) {
+        db.updateEmployee(id: id.uuidString, fields: fields) { result in completion(result) }
     }
     
     func deleteEmployee(id: UUID,
                         completion: @escaping (Bool) -> Void) {
-        firebase.deleteEmployee(id: id.uuidString) { result in completion(result)}
+        db.deleteEmployee(id: id.uuidString) { result in completion(result)}
     }
     
     func updateEmployees(employees: [Employee],
+                         fields: [String: Any],
                          completion: @escaping (Bool) -> Void) {
         
-        firebase.updateEmployees(employees: employees.compactMap { $0.asEntity }) { result in completion(result) }
-
-//        db.updateEmployees(employees: employees.compactMap { $0.asEntity } )
+        db.updateEmployees(employees: employees.map { $0.asEntity }, fields: fields) { result in completion(result) }
     }
 }

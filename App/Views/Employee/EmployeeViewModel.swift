@@ -19,9 +19,13 @@ class EmployeeViewModel: ObservableObject {
     }
     
     func didSwapToDeleteEntry(at offsets: IndexSet) {
-        self.objectWillChange.send()
-        
         employee.deleteEntry(at: offsets)
-        employeeRepository.updateEmployee(employee: employee)
+        
+        employeeRepository.saveEmployee(employee: employee) { result in
+            switch result {
+            case true: print("entry DELETED")
+            case false: print("error uDELETING entry")
+            }
+        }
     }
 }
