@@ -39,7 +39,7 @@ struct TimeEntry: Identifiable {
         self.creationDate = entity.creationDate
     }
     
-    var asEntity: TimeEntryModel {
+    var model: TimeEntryModel {
         TimeEntryModel(id: id,
                        date: date,
                        service: service,

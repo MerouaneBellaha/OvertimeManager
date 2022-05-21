@@ -11,8 +11,6 @@ struct HomeView: View {
     
     @ObservedObject var viewModel: HomeViewModel
     
-    var db = FireStoreDB()
-    
     var body: some View {
         NavigationView {
             VStack {

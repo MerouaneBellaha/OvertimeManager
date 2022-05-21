@@ -37,7 +37,7 @@
 		CBDE05362834F53600F0D512 /* TimeEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05352834F53600F0D512 /* TimeEntryModel.swift */; };
 		CBDE05382834F54D00F0D512 /* EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE05372834F54D00F0D512 /* EmployeeModel.swift */; };
 		CBDE053C2835267300F0D512 /* EmployeeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE053B2835267300F0D512 /* EmployeeRepository.swift */; };
-		CBDE053F283526AF00F0D512 /* EmployeeDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE053E283526AF00F0D512 /* EmployeeDB.swift */; };
+		CBDE053F283526AF00F0D512 /* FireStoreDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE053E283526AF00F0D512 /* FireStoreDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +81,7 @@
 		CBDE05352834F53600F0D512 /* TimeEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryModel.swift; sourceTree = "<group>"; };
 		CBDE05372834F54D00F0D512 /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
 		CBDE053B2835267300F0D512 /* EmployeeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeRepository.swift; sourceTree = "<group>"; };
-		CBDE053E283526AF00F0D512 /* EmployeeDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDB.swift; sourceTree = "<group>"; };
+		CBDE053E283526AF00F0D512 /* FireStoreDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,7 +272,7 @@
 		CBDE053D2835269200F0D512 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CBDE053E283526AF00F0D512 /* EmployeeDB.swift */,
+				CBDE053E283526AF00F0D512 /* FireStoreDB.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -385,7 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBDE052A2834C03700F0D512 /* Date+toString.swift in Sources */,
-				CBDE053F283526AF00F0D512 /* EmployeeDB.swift in Sources */,
+				CBDE053F283526AF00F0D512 /* FireStoreDB.swift in Sources */,
 				CBDE053C2835267300F0D512 /* EmployeeRepository.swift in Sources */,
 				CBCFD99B283044F500949226 /* EmployeeFactory.swift in Sources */,
 				CBCFD976282F920400949226 /* HomeView.swift in Sources */,

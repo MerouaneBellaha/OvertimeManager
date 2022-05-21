@@ -7,36 +7,38 @@
 
 import Foundation
 
-struct EmployeeRepository {
-
-    private let db: EmployeeRepositoryProtocol = FireStoreDB()
+enum EmployeeFields {
+    case overtimeToZero
     
-    private let entriesKey = "entries"
+    var value: [String: Any] {
+        switch self {
+        case .overtimeToZero: return ["overtime": 0]
+        }
+    }
+}
+
+struct EmployeeRepository {
+    
+    private let db: EmployeeRepositoryProtocol = FireStoreDB(collectionPath: "employees")
     
     func getEmployees(notification: @escaping ([Employee]) -> Void) {
-        db.getEmployees { result in notification(result.map { Employee(entity: $0) }) }
+        db.getDocuments { result in notification(result.map { Employee(entity: $0) }) }
     }
     
     func saveEmployee(employee: Employee,
                       completion: @escaping (Bool) -> Void) {
-        db.saveEmployee(employee: employee.asEntity) { result in completion(result) }
-    }
-    
-    func updateEmployee(id: UUID,
-                        fields: [String: Any],
-                        completion: @escaping (Bool) -> Void) {
-        db.updateEmployee(id: id.uuidString, fields: fields) { result in completion(result) }
+        db.saveDocument(document: employee.model, at: employee.id.uuidString ) { result in completion(result) }
     }
     
     func deleteEmployee(id: UUID,
                         completion: @escaping (Bool) -> Void) {
-        db.deleteEmployee(id: id.uuidString) { result in completion(result)}
+        db.deleteDocument(id: id.uuidString) { result in completion(result)}
     }
     
-    func updateEmployees(employees: [Employee],
-                         fields: [String: Any],
-                         completion: @escaping (Bool) -> Void) {
+    func updateFieldForEmployees(ids: [UUID],
+                                 field: EmployeeFields,
+                                 completion: @escaping (Bool) -> Void) {
         
-        db.updateEmployees(employees: employees.map { $0.asEntity }, fields: fields) { result in completion(result) }
+        db.updateFieldForDocuments(ids: ids.map { $0.uuidString }, field: field.value) { result in completion(result) }
     }
 }

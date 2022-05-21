@@ -40,7 +40,7 @@ class HomeViewModel: ObservableObject {
     func didTapResetOvertime() {
         let employeesToUpdate = employeeStore.employees.filter { $0.overtime != 0 }
         if !employeesToUpdate.isEmpty {
-            employeeRepository.updateEmployees(employees: employeesToUpdate, fields: ["overtime": 0]) { result in
+            employeeRepository.updateFieldForEmployees(ids: employeesToUpdate.map { $0.id }, field: .overtimeToZero) { result in
                 switch result{
                 case true: print("employees updated")
                 case false: print("error updating employees")

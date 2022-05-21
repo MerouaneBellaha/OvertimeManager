@@ -29,13 +29,13 @@ class Employee: Identifiable {
         self.creationDate = entity.creationDate
     }
     
-    var asEntity: EmployeeModel {
+    var model: EmployeeModel {
         EmployeeModel(id: id,
-                       entries: entries.compactMap { $0.asEntity },
-                       firstName: firstName,
-                       lastName: lastName,
-                       overtime: overtime,
-                       creationDate: creationDate)
+                      entries: entries.compactMap { $0.model },
+                      firstName: firstName,
+                      lastName: lastName,
+                      overtime: overtime,
+                      creationDate: creationDate)
     }
     
     func deleteEntry(at offsets: IndexSet) {
